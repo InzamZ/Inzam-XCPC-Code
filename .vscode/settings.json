@@ -1,6 +1,28 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "stack": "cpp",
+        "deque": "cpp",
+        "random": "cpp",
+        "array": "cpp",
+        "*.tcc": "cpp",
+        "bitset": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "functional": "cpp",
+        "iomanip": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "ranges": "cpp",
+        "ratio": "cpp",
+        "span": "cpp",
+        "sstream": "cpp",
+        "stop_token": "cpp",
+        "streambuf": "cpp",
+        "regex": "cpp",
+        "tuple": "cpp",
+        "cstdio": "cpp"
     }
 }
