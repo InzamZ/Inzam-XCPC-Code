@@ -1,51 +1,73 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 5e5 + 10;
+const int maxn = 1e3 + 10;
 using ll = long long;
-int pos[maxn];
 struct node {
-    int pre, next, val;
+    int val;
+    node *l, *r;
 } s[maxn];
-int head[2];
-int n, m, a;
-//1 3 -1 -1 -1
+node *head[2];
+int n, m, a, deb = 0;
 
-int lowbit(int x)
-{
-    return x & (-x);
-}
+void move_to_r(int x, int y, bool flag);
 
-void add(int k, int val)
+void move_to_l(int x, int y, bool flag)
 {
-    while (k < n) {
-        pos[k] += val;
-        k += lowbit(k);
+    if (flag) {
+        move_to_r(x, y, !flag);
+        return ;
     }
+    s[x].l->r = s[x].r;
+    s[x].r->l = s[x].l;
+    s[x].l = s[y].l;
+    s[x].r = &s[y];
+    s[y].l->r = &s[x];
+    s[y].l = &s[x];
 }
 
-int getpos(int k)
+void move_to_r(int x, int y, bool flag)
 {
-    int ans = 0;
-    while (k > 0) {
-        ans += pos[k];
-        k -= lowbit(k);
+    if (flag) {
+        move_to_l(x, y, !flag);
+        return ;
     }
-    return ans;
+    s[x].l->r = s[x].r;
+    s[x].r->l = s[x].l;
+    s[x].l = &s[y];
+    s[x].r = s[y].r;
+    s[y].r->l = &s[x];
+    s[y].r = &s[x];
 }
 
-int move_to_l(int x, int y, bool flag)
+void swap_xy(int x, int y)
 {
-    int px = getpos(x), py = getpos(y);
-    int npx = y + py > px, npy = y - py > px;
-    add(x, npx - px);
-    add(x + 1, px - npx - npx > px);
-    add(y, npy - py);
-    add(y + 1, py - npy);
-    s[px].next
-}
-
-int move_to_r(int x, int y, bool flag)
-{
+    node *xl = s[x].l, *xr = s[x].r;
+    if (xr == &s[y]) {//交换相邻元素
+        s[x].l->r=&s[y];
+        s[y].r->l=&s[x];
+        s[x].r = s[y].r;
+        s[y].l = s[x].l;
+        s[x].l = &s[y];
+        s[y].r = &s[x];
+        return ;
+    }
+    if (xl == &s[y]) {
+        s[x].r->l=&s[y];
+        s[y].l->r=&s[x];
+        s[y].r = s[x].r;
+        s[x].l = s[y].l;
+        s[y].l = &s[x];
+        s[x].r = &s[y];
+        return ;
+    }
+    s[x].l->r = &s[y];
+    s[x].r->l = &s[y];
+    s[x].l = s[y].l;
+    s[x].r = s[y].r;
+    s[y].l->r = &s[x];
+    s[y].r->l = &s[x];
+    s[y].l = xl;
+    s[y].r = xr;
 }
 
 int main()
@@ -54,13 +76,21 @@ int main()
     cin.tie(0);
     bool flag = 0;
     cin >> n >> m;
-    head[0] = 1;
-    head[1] = n;
+    node *pre = &s[0];
     for (int i = 1; i <= n; ++i) {
         cin >> a;
-        pos[a] = 1;
-        s[i] = {i - 1, i + 1, a};
+        s[a].l = pre;
+        s[a].r = &s[n + 1];
+        s[a].val = a;
+        pre->r = &s[a];
+        pre = &s[a];
+        if (i == 1)
+            s[0].r = &s[a];
+        if (i == n)
+            s[n + 1].l = &s[a];
     }
+    head[0] = &s[0];
+    head[1] = &s[n + 1];
     for (int i = 1; i <= m; ++i) {
         int op, x, y;
         cin >> op;
@@ -68,13 +98,26 @@ int main()
             flag = !flag;
         else {
             cin >> x >> y;
-            if ((op == 1 && !flag ) || (op == 2 && flag))
-                move_to_l(x, y);
-            if ((op == 2 && !flag) || (op == 1 && flag))
-                move_to_r(x, y);
+            if (op == 1 )
+                move_to_r(x, y, flag);
+            if (op == 2 )
+                move_to_l(x, y, flag);
             if (op == 3)
                 swap_xy(x, y);
         }
     }
+    node *cur = head[flag];
+    if (flag)
+        cur = cur->l;
+    else
+        cur = cur->r;
+    while ( cur != nullptr && cur != head[!flag]) {
+        cout << cur->val << ' ';
+        if (flag)
+            cur = cur->l;
+        else
+            cur = cur->r;
+    }
+    cout << '\n';
     return 0;
 }
