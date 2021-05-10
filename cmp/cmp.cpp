@@ -31,12 +31,7 @@ int main()
         if (system("diff std.out yours.out"))
         {
             cout << i << ": Wrong Anwser!" << endl;
-            cout << "input:" << endl;
-            system("cat in");
-            cout << "stdout:" << endl;
-            system("cat std.out");
-            cout << "yourout:" << endl;
-            system("cat yours.out");
+            printf("TIME: std:%8lf   yours:%8lf\n", stdstop - stdstart, ystop - ystart);
             cout << "请查看输入数据 \"in\" " << endl;
             getchar();
         }

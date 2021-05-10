@@ -6,15 +6,18 @@ using namespace std;
 
 int main()
 {
-    freopen("in","w",stdout);
+    freopen("input.in","w",stdout);
     srand(time(NULL));
-    int num1=rand()% (int)(RMAXN)+1,num2=rand()% (int)(5)+1,num3=rand()% (int)(RMAXN)+1;
-    cout<<num1+1<<' '<<num2+1<<' '<<num3+1<<endl;
+    int num1=rand()% (int)(RMAXN)+1,num2=rand()% (int)(5)+1;
+    cout<<num1<<' '<<num2<<endl;
     for (int i=1;i<=num1;i++) {
-        cout<<rand()% (int)(RMAXN)+1<<' '<<rand()% (int)(RMAXN)+1<<' '<<rand()% (int)(RMAXN)+1<<endl;
+        cout<<i<<endl;
     }
     for (int i=1;i<=num2;i++) {
-        cout<<rand()% (int)(RMAXN)+1<<' '<<rand()% (int)(RMAXN)+1<<' '<<rand()% (int)(RMAXN)+1<<endl;
+        int op=rand()% (int)(3)+1;
+        int x=rand()% (int)(num1)+1,y=rand()% (int)(num1)+1;
+        while (x==y) y=rand()% (int)(num1)+1;
+        cout<<op<<' '<<x<<' '<<y<<endl;
     }
     fclose(stdin);
     return 0;

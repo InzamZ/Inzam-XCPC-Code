@@ -1,57 +1,121 @@
-#include<cstdio>
-#include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
+const int maxn = 1e6 + 10;
+using ll = long long;
+struct node {
+    int val;
+    node *l, *r;
+} s[maxn];
+node *head[2];
+int n, m, a, deb = 0;
 
-typedef int ll;
+void move_to_r(int x, int y, bool flag);
 
-#define MAXC 10010
-
-ll M[6][3],N[MAXC*8][3];
-ll dp[MAXC];
-
-inline ll GetMVal(ll node,ll v)
+void move_to_l(int x, int y, bool flag)
 {
-	return M[node][0]*v*v+M[node][1]*v+M[node][2];
+    if (flag) {
+        move_to_r(x, y, !flag);
+        return ;
+    }
+    // if (&s[y] == head[0])
+    //     head[0] = &s[x];
+    s[x].l->r = s[x].r;
+    s[x].r->l = s[x].l;
+    s[x].l = s[y].l;
+    s[x].r = &s[y];
+    s[y].l->r = &s[x];
+    s[y].l = &s[x];
+}
+
+void move_to_r(int x, int y, bool flag)
+{
+    if (flag) {
+        move_to_l(x, y, !flag);
+        return ;
+    }
+    // if (&s[y] == head[1])
+    //     head[1] = &s[x];
+    s[x].l->r = s[x].r;
+    s[x].r->l = s[x].l;
+    s[x].l = &s[y];
+    s[x].r = s[y].r;
+    s[y].r->l = &s[x];
+    s[y].r = &s[x];
+}
+
+void swap_xy(int x, int y)
+{
+    // if ((&s[x] == head[0] && &s[y] == head[1]) || (&s[x] == head[1] && &s[y] == head[0]))
+    //     swap(head[0], head[1]);
+    // else if (&s[x] == head[0])
+    //     head[0] = &s[y];
+    // else if (&s[x] == head[1])
+    //     head[1] = &s[y];
+    // else if (&s[y] == head[0])
+    //     head[0] = &s[x];
+    // else if (&s[y] == head[1])
+    //     head[1] = &s[x];
+    node *xl = s[x].l, *xr = s[x].r;
+    s[x].l->r = &s[y];
+    s[x].r->l = &s[y];
+    s[x].l = s[y].l;
+    s[x].r = s[y].r;
+    s[y].l->r = &s[x];
+    s[y].r->l = &s[x];
+    s[y].l = xl;
+    s[y].r = xr;
 }
 
 int main()
 {
-    
-    // freopen("in", "r", stdin);
-    // freopen("yours.out", "w", stdout);
-	ll n,m,C,cur;
-	scanf ("%d %d %d",&n,&m,&C);
-	cur=n;
-	for (ll i=1;i<=n;i++) {
-		scanf("%d %d %d",&N[i][0],&N[i][1],&N[i][2]);
-	}
-	for (int i=1;i<=n;i++)
-	{
-		int cnt=1;
-		while(N[i][2]-cnt>0)
-		{
-			N[++cur][0]=N[i][0]*cnt;
-			N[cur][1]=N[i][1]*cnt;
-			N[i][2]-=cnt;
-			cnt*=2;
-		}
-		N[i][0]*=N[i][2];
-		N[i][1]*=N[i][2];
-	}
-	for (ll i=1;i<=m;i++) scanf("%d %d %d",&M[i][0],&M[i][1],&M[i][2]);
-	for (ll i=1;i<=cur;i++)
-		for (ll j=C;j>=N[i][0];j--)
-				dp[j]=max(dp[j],dp[j-N[i][0]]+N[i][1]);
-    for (int i=0;i<=C;i++)
-	printf("%d\n",dp[i]);
-	for (ll i=1;i<=m;i++) 
-		for (ll j=C;j>=0;j--)
-		{
-			for (ll k=0;k<=j;k++)
-			{
-				dp[j]=max(dp[j],dp[j-k]+GetMVal(i,k));
-			}
-		}
-	printf("%d\n",dp[C]);
-	return 0;
+	freopen("input.in", "r", stdin);
+    freopen("yours.out", "w", stdout);
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    bool flag = 0;
+    cin >> n >> m;
+    node *pre = &s[0];
+    for (int i = 1; i <= n; ++i) {
+        cin >> a;
+        s[a].l = pre;
+        s[a].r = &s[n + 1];
+        s[a].val = a;
+        pre->r = &s[a];
+        pre = &s[a];
+        if (i == 1)
+            s[0].r = &s[a];
+        if (i == n)
+            s[n + 1].l = &s[a];
+    }
+    head[0] = &s[0];
+    head[1] = &s[n + 1];
+    for (int i = 1; i <= m; ++i) {
+        int op, x, y;
+        cin >> op;
+        if (op == 4)
+            flag = !flag;
+        else {
+            cin >> x >> y;
+            if (op == 1 )
+                move_to_r(x, y, flag);
+            if (op == 2 )
+                move_to_l(x, y, flag);
+            if (op == 3)
+                swap_xy(x, y);
+        }
+    }
+    node *cur = head[flag];
+    if (flag)
+        cur = cur->l;
+    else
+        cur = cur->r;
+    while (cur != head[!flag]) {
+        cout << cur->val << ' ';
+        if (flag)
+            cur = cur->l;
+        else
+            cur = cur->r;
+    }
+    cout << '\n';
+    return 0;
 }
