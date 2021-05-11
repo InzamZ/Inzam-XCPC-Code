@@ -97,7 +97,7 @@ int main()
         b.push_back(a[i]);
     }
     sort(b.begin(), b.end());
-    b.erase((b.begin(), b.end()),b.end());
+    b.erase(unique(b.begin(), b.end()),b.end());
     rt[0] = build(1, b.size());
     for (int i = 1; i <= N; ++i) {
         kth = getid(a[i]);
