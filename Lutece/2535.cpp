@@ -13,6 +13,7 @@ struct bigint {
     const int base = 1e8;
     const int width = 8;
     vector<int>s;
+    ll sum = -1;
 
     bigint (ll num = 0)
     {
@@ -58,6 +59,8 @@ struct bigint {
 
     ll getnum()
     {
+        if (sum != -1)
+            return sum;
         ll ans = 0;
         for (int i = 0; i < s.size(); ++i) {
             int x = s[i];
@@ -66,6 +69,7 @@ struct bigint {
                 x /= 10;
             }
         }
+        sum = ans;
         return ans;
     }
 } val[maxn][maxn];
@@ -91,7 +95,9 @@ int main()
         scanf("%d%d", &n, &m);
         ans = 0;
         m = min(m + 1, n);
-        for (int i=0;i<=n;++i) for(int j=0;j<=m;++j) dp[i][j]=0;
+        for (int i = 0; i <= n; ++i)
+            for (int j = 0; j <= m; ++j)
+                dp[i][j] = 0;
         scanf("%s", s);
         for (int j = 0; j < n; ++j) {
             for (int k = j; k < n; ++k) {
@@ -99,6 +105,7 @@ int main()
                     val[j][k] = val[j][k - 1] + val[j][k - 1] + (s[k] - '0');
                 else
                     val[j][k] = (s[k] - '0');
+                val[j][k].sum = -1;
             }
         }
         for (int i = 1; i <= m; ++i) {
