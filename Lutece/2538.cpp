@@ -24,22 +24,10 @@ void do_odd(ll o, ll L, ll R)
 
 void pushup(ll o, ll L, ll R)
 {
-    if (tree[o].lazy) {
-        //printf("%lld(%lld) %lld(%lld)\ntree[%lld].sum1 (%lld) += (num[%lld + 1](%lld) - num[%lld](%lld))", L, num[L], R, num[R+1], o, tree[o].sum1, R, num[R + 1], L, num[L]);
+    if (tree[o].lazy)
         tree[o].sum1 = num[R + 1] - num[L];
-        //printf("   tree[%lld].sum1 (%lld) \n", o, tree[o].sum1);
-        //printf("tree[%lld].sum2 (%lld) = (num[%lld + 1](%lld) - num[%lld](%lld) - tree[%lld].sum2(%lld)", o, tree[o].sum2, R, num[R + 1], L, num[L], o, tree[o].sum2);
-        //printf("   tree[%lld].sum2 (%lld) \n", o, tree[o].sum2);
-    }
-    // else if (L == R) {
-    //     tree[o].sum1 = 0;
-    //     tree[o].sum2 = 0;
-    // }
-    else {
+    else
         tree[o].sum1 = tree[lo].sum1 + tree[ro].sum1;
-        //printf("%lld(%lld) %lld(%lld)\ntree[%lld].sum1(%lld) + tree[%lld].sum1(%lld) = tree[%lld].sum1(%lld)\n", L, num[L], R, num[R+1],lo,tree[lo].sum1,ro,tree[ro].sum1,o,tree[o].sum1);
-        //printf("tree[%lld].sum2(%lld) + tree[%lld].sum2(%lld) = tree[%lld].sum2(%lld)\n",lo,tree[lo].sum2,ro,tree[ro].sum2,o,tree[o].sum2);
-    }
 }
 
 void pushdown(ll o, ll L, ll R)
