@@ -1,4 +1,9 @@
 *.out
 *.exe
 *.zip
-cmp/
+*.json
+/cmp/
+/.vs/
+/.vscode/
+bin/
+*/makefile
