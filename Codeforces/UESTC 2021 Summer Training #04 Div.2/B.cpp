@@ -1,20 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-#define F(a,b,c) for(int (a)=(b);(a)<=(c);++(a))
-#define f(a,b,c) for(int (a)=(b);(a)>=(c);--(a))
-
 using ll = long long;
-#define pii pair<int,int>
 
-const int maxn = 1e6 + 5;
-const int maxb = 110;
-const int inf = 1e9;
-const ll Inf = 1e18;
+const int maxn = 2e5 + 5;
 
 int tra[maxn][3], a[maxn];
 int distra[maxn];
-int T = 1, n, m, k, t, l, r, d;
+int n, m, k, t, l, r, d;
 
 bool check(int x)
 {
@@ -39,23 +31,20 @@ bool check(int x)
 
 int main()
 {
-    // scanf("%d", &T);
-    while (T--) {
-        scanf("%d %d %d %d", &m, &n, &k, &t);
-        for (int i = 1; i <= m; ++i)
-            scanf("%d", &a[i]);
-        sort(a + 1, a + 1 + m);
-        for (int i = 1; i <= k; ++i)
-            scanf("%d %d %d", &tra[i][0], &tra[i][1], &tra[i][2]);
-        l = 0, r = m + 1;
-        while (l + 1 < r) {
-            int mid = (l + r) >> 1;
-            if (check(mid))
-                l = mid;
-            else
-                r = mid;
-        }
-        printf("%d\n", l);
+    scanf("%d %d %d %d", &m, &n, &k, &t);
+    for (int i = 1; i <= m; ++i)
+        scanf("%d", &a[i]);
+    sort(a + 1, a + 1 + m);
+    for (int i = 1; i <= k; ++i)
+        scanf("%d %d %d", &tra[i][0], &tra[i][1], &tra[i][2]);
+    l = 0, r = m + 1;
+    while (l + 1 < r) {
+        int mid = (l + r) >> 1;
+        if (check(mid))
+            l = mid;
+        else
+            r = mid;
     }
+    printf("%d\n", l);
     return 0;
 }

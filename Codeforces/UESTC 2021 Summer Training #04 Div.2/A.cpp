@@ -1,9 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-#define F(a,b,c) for(int (a)=(b);(a)<=(c);++(a))
-#define f(a,b,c) for(int (a)=(b);(a)>=(c);--(a))
-
 using ll = long long;
 
 const double pi = acos(-1.0);
