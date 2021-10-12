@@ -1,65 +1,58 @@
-#include<stdio.h>
-struct mode {
-    int L, R;
-    int num;
-} a[2000]; //结构体，L，R分别是a[i]的左边和右边的数，a[i].num是a[i]本身的值
-void Move(int stap, int x, int y)
-{
-    if (stap == 1) { //模式1（将x移向y的左边）
-        a[a[x].R].L = a[x].L; //x的右边的左边等于x原来的左边
-        a[a[x].L].R = a[x].R; //x的左边的右边等于x原来的右边
-        a[x].L = a[y].L; //x的左边等于y原来的左边
-        a[a[y].L].R = a[x].num; //y原来的左边的右边变成x
-        a[x].R = a[y].num; //x的右边变成y
-        a[y].L = a[x].num; //y的左边变成x
-        return;
-    }
-    else if (stap == 2) { //模式2（将x移向y的右边）
-        a[a[x].R].L = a[x].L; //x的右边的左边等于x原来的左边
-        a[a[x].L].R = a[x].R; //x左边的右边等于x原来的右边
-        a[y].L = a[x].R; //y的左边等于x原来的右边
-        a[x].L = a[y].num; //x的左边等于y
-        a[x].R = a[y].R; //x的右边等于y原来的右边
-        a[y].R = a[x].num; //y的右边等于x
-        return;
-    }
-}
+// freopen("data.in", "r", stdin);
+// freopen("std.out", "w", stdout)；
+#include <bits/stdc++.h>
+using namespace std;
+#define F(a,b,c) for(int (a)=(b);(a)<=(c);++(a))
+#define f(a,b,c) for(int (a)=(b);(a)>=(c);--(a))
+
+using ll = long long;
+#define pii pair<int,int>
+#define pdd pair<double,double>
+
+const double pi = acos(-1.0);
+const ll inf = 1e18;
+const int maxn = 3010;
+int a[maxn], cnt[maxn][maxn];
+
+int T = 1, n, q, l, r, k;
+int ans = 1e7, c;
+
+vector<int>v;
+
 int main()
 {
-    freopen("input.in", "r", stdin);
+    freopen("data.in", "r", stdin);
     freopen("std.out", "w", stdout);
-    int i, j, n, sum, m, stap, x, y, k, first, b, pre = 0;
-    scanf("%d%d", &sum, &m);
-    for (i = 1; i <= sum; i++) { //初始化数组
-        scanf("%d", &b);
-        a[i].num = i;
-        a[i].L = i - 1;
-        a[i].R = i + 1;
-    }
-    a[pre].R = sum + 1;
-    while (m--) {
-        scanf("%d %d %d", &stap, &x, &y);
-        Move(stap, x, y); //进行调换
-    }
-    for (i = 1; i <= sum; i++) {
-        if (a[i].L == 0) //谁的左边是0，谁第一个输出
-            first = i; //标记第一个输出的数
-    }
-    k = 0;
-    while (k <= sum) {
-        if (k == 0) { //第一次输出
-            //不输出左边的0（因为原来就没有o）
-            printf("%d ", a[first].num);
-            printf("%d ", a[first].R);
-            k += 3; //下次的那个数没有计算，这里要加3而不是2
-            first = a[first].R;
-        }
-        else {
-            printf("%d ", a[first].R);
-            k++;//每输出一个数k加一次，知道k满足数组的长度退出
-            first = a[first].R;
+    v.push_back(1);
+    v.push_back(2);
+    for (int i = 3; i <= 500; ++i) {
+        for (int j = 2; j * j <= i; ++j) {
+            if (i % j == 0)
+                break;
+            if ((j + 1) * (j + 1) > i)
+                v.push_back(i);
         }
     }
-    printf("\n");
+    while (T--) {
+        scanf("%d", &n);
+        for (int i = 1; i <= n; ++i) {
+            scanf("%d", &a[i]);
+            for (int j = 1; j < v.size(); ++j) {
+                if (a[i] % v[j] == 0)
+                    cnt[i][j] = cnt[i - 1][j] + 1;
+                else
+                    cnt[i][j] = cnt[i - 1][j];
+            }
+        }
+        int res = 0;
+        for (int i = 1; i <= n; ++i) {
+            int ans = 0;
+            for (int j = 1; j < v.size(); ++j)
+                ans = max(ans, cnt[i][j]);
+            printf("%d\n", ans + 2);
+            res = max(ans + 2, res);
+        }
+        printf("%d\n", res);
+    }
     return 0;
 }

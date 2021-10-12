@@ -1,28 +1,10 @@
 {
     "files.associations": {
-        "iostream": "cpp",
-        "ostream": "cpp",
-        "stack": "cpp",
-        "deque": "cpp",
-        "random": "cpp",
-        "array": "cpp",
+        "numeric": "cpp",
         "*.tcc": "cpp",
-        "bitset": "cpp",
-        "string": "cpp",
-        "vector": "cpp",
-        "string_view": "cpp",
-        "functional": "cpp",
-        "iomanip": "cpp",
-        "istream": "cpp",
-        "limits": "cpp",
-        "ranges": "cpp",
-        "ratio": "cpp",
-        "span": "cpp",
-        "sstream": "cpp",
-        "stop_token": "cpp",
-        "streambuf": "cpp",
-        "regex": "cpp",
-        "tuple": "cpp",
-        "cstdio": "cpp"
-    }
+        "valarray": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled",
+    "vscode-live2d.model": "hijiki",
+    "vscode-live2d.modelUrl": "https://cdn.jsdelivr.net/gh/InzamZ/inzamz.github.io@main/live2d-widget-model-kutori/",
 }

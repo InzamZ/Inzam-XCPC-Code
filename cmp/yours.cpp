@@ -1,121 +1,61 @@
+// freopen("data.in", "r", stdin);
+// freopen("yours.out", "w", stdout);
+//InzamZ
+//
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 1e6 + 10;
 using ll = long long;
-struct node {
-    int val;
-    node *l, *r;
-} s[maxn];
-node *head[2];
-int n, m, a, deb = 0;
 
-void move_to_r(int x, int y, bool flag);
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define REG register
+#define FREAD 1
 
-void move_to_l(int x, int y, bool flag)
+const int maxn = 1e5 + 10;
+const int maxb = 110;
+const int inf = 1e9;
+const ll Inf = 1e18;
+const ll mod = 1e9 + 7;
+
+int a[maxn], cnt = 0;
+int G[maxn];
+
+int T = 1, n, ans = 0, m;
+bool check(int x, int y)
 {
-    if (flag) {
-        move_to_r(x, y, !flag);
-        return ;
+    bool result = 1;
+    for (int i = 1; i <= n; ++i) {
+        if (__gcd(a[i], a[y]) != 1 && G[i] == G[x]) {
+            result = 0;
+            return false;
+        }
     }
-    // if (&s[y] == head[0])
-    //     head[0] = &s[x];
-    s[x].l->r = s[x].r;
-    s[x].r->l = s[x].l;
-    s[x].l = s[y].l;
-    s[x].r = &s[y];
-    s[y].l->r = &s[x];
-    s[y].l = &s[x];
-}
-
-void move_to_r(int x, int y, bool flag)
-{
-    if (flag) {
-        move_to_l(x, y, !flag);
-        return ;
-    }
-    // if (&s[y] == head[1])
-    //     head[1] = &s[x];
-    s[x].l->r = s[x].r;
-    s[x].r->l = s[x].l;
-    s[x].l = &s[y];
-    s[x].r = s[y].r;
-    s[y].r->l = &s[x];
-    s[y].r = &s[x];
-}
-
-void swap_xy(int x, int y)
-{
-    // if ((&s[x] == head[0] && &s[y] == head[1]) || (&s[x] == head[1] && &s[y] == head[0]))
-    //     swap(head[0], head[1]);
-    // else if (&s[x] == head[0])
-    //     head[0] = &s[y];
-    // else if (&s[x] == head[1])
-    //     head[1] = &s[y];
-    // else if (&s[y] == head[0])
-    //     head[0] = &s[x];
-    // else if (&s[y] == head[1])
-    //     head[1] = &s[x];
-    node *xl = s[x].l, *xr = s[x].r;
-    s[x].l->r = &s[y];
-    s[x].r->l = &s[y];
-    s[x].l = s[y].l;
-    s[x].r = s[y].r;
-    s[y].l->r = &s[x];
-    s[y].r->l = &s[x];
-    s[y].l = xl;
-    s[y].r = xr;
+    return true;
 }
 
 int main()
 {
-	freopen("input.in", "r", stdin);
+    // scanf("%d",&T);
+    freopen("data.in", "r", stdin);
     freopen("yours.out", "w", stdout);
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    bool flag = 0;
-    cin >> n >> m;
-    node *pre = &s[0];
-    for (int i = 1; i <= n; ++i) {
-        cin >> a;
-        s[a].l = pre;
-        s[a].r = &s[n + 1];
-        s[a].val = a;
-        pre->r = &s[a];
-        pre = &s[a];
-        if (i == 1)
-            s[0].r = &s[a];
-        if (i == n)
-            s[n + 1].l = &s[a];
-    }
-    head[0] = &s[0];
-    head[1] = &s[n + 1];
-    for (int i = 1; i <= m; ++i) {
-        int op, x, y;
-        cin >> op;
-        if (op == 4)
-            flag = !flag;
-        else {
-            cin >> x >> y;
-            if (op == 1 )
-                move_to_r(x, y, flag);
-            if (op == 2 )
-                move_to_l(x, y, flag);
-            if (op == 3)
-                swap_xy(x, y);
+    while (T--) {
+        ans = 0;
+        scanf("%d", &n);
+        for (int i = 1; i <= n; ++i)
+            scanf("%d", &a[i]);
+        for (int i = 1; i <= n; ++i) {
+            if (G[i])
+                continue;
+            cnt++;
+            G[i] = cnt;
+            for (int j = i + 1; j <= n; ++j) {
+                if (G[j] == 0 && check(i, j))
+                    G[j] = cnt;
+            }
         }
+        printf("%d\n", cnt);
+        // for (int i = 1; i <= n; ++i)
+        //     printf("%d%c", G[i], i == n ? '\n' : ' ');
     }
-    node *cur = head[flag];
-    if (flag)
-        cur = cur->l;
-    else
-        cur = cur->r;
-    while (cur != head[!flag]) {
-        cout << cur->val << ' ';
-        if (flag)
-            cur = cur->l;
-        else
-            cur = cur->r;
-    }
-    cout << '\n';
     return 0;
 }
