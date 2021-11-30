@@ -2,7 +2,8 @@
     "files.associations": {
         "numeric": "cpp",
         "*.tcc": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "utility": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "vscode-live2d.model": "hijiki",
