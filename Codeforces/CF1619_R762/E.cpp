@@ -69,7 +69,9 @@ int main()
                 else
                     printf("%lld", cnt[i] + res);
             }
-            if (i > 0 && cnt[i] - cnt[i - 1] == 0) {
+            if (i == 0 && cnt[i] == 0)
+                flag = 0;
+            else if (i > 0 && cnt[i] - cnt[i - 1] == 0) {
                 if (!q.empty()) {
                     res += (i - q.top());
                     q.pop();
