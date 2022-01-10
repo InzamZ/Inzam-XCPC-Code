@@ -24,41 +24,15 @@ int main()
     cin.tie(0);
     cin >> T;
     while (T--) {
+        ans = 0;
         cin >> n;
         cin >> s;
-        int cnt = 0;
-        for (int i = 1; i < n; ++i) {
-            bool ok = 0;
-            for (int j = i; j <= i + i - 1; ++j) {
-                if (j >= n) {
-                    if (s[i] <= s[i - 1]) {
-                        ++cnt;
-                        continue;
-                    } else {
-                        ok = 1;
-                        break;
-                    }
-                }
-                if (s[j] == s[2 * i - j - 1]) continue;
-                if (s[j] > s[2 * i - j - 1]) ok = 1;
-                if (s[j] < s[2 * i - j - 1] && i != j) {
-                    ++cnt;
-                } else if (s[j] < s[2 * i - j - 1] && i == j) {
-                    if (s[i] <= s[i - 1]) {
-                        ++cnt;
-                        continue;
-                    } else {
-                        ok = 1;
-                        break;
-                    }
-                }
-                if (s[j] != s[2 * i - j - 1]) break;
-                if (j == 2 * i - 1) ok = 1;
-            }
-            if (ok) break;
+        for (int i = 1; i < s.length(); ++i) {
+            if (s[i] <= s[i - 1] && s[i] != s[0]) ++ans;
+            else break;
         }
-        for (int i = 0; i <= cnt; ++i) cout << s[i];
-        for (int i = cnt; i >= 0 ; --i) cout << s[i];
+        for (int i = 0; i <= ans; ++i) cout << s[i];
+        for (int i = ans; i >= 0; --i) cout << s[i];
         cout << '\n';
     }
     return 0;
