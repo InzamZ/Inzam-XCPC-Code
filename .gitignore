@@ -3,7 +3,4 @@
 *.zip
 *.json
 /cmp/
-/.vs/
-/.vscode/
 bin/
-*/makefile
