@@ -17,8 +17,7 @@ void update(ll i,ll val)
 {
 	ll x=i;
 	while(i<=N){
-		a[i]+=val;
-		b[i]+=(val*(x-1));
+		ta[i]+=val;
 		i+=lowbit(i);
 	}
 }
@@ -27,7 +26,7 @@ ll getsum(ll i)
 {
 	ll res=0,x=i;
 	while(i>0){
-		res+=(a[i]*x-b[i]);
+		res+=ta[i];
 		i-=lowbit(i);
 	}
 	return res;
