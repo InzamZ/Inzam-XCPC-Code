@@ -50,14 +50,14 @@ int main()
                 printf("%d%c", i, i == n ? '\n' : ' ');
         }
         else if (a == b ) {
-            int res = a + b + 2;
+            int res = 1;
             for (int i = 1; i <= a + b + 2; i += 2) {
                 ans[i] = res;
-                --res;
+                ++res;
             }
             for (int i = 2; i <= a + b + 2; i += 2) {
                 ans[i] = res;
-                --res;
+                ++res;
             }
             for (int i = a + b + 3; i <= n; ++i)
                 ans[i] = i;

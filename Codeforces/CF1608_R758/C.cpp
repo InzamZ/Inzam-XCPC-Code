@@ -76,7 +76,7 @@ int main()
         }
         sort(a + 1, a + 1 + n, Acmp);
         sort(b + 1, b + 1 + n, Bcmp);
-        int pb = 1, pa = 2;
+        int pb = 1, pa = 1;
         int numa = b[1].aval, numb = a[1].bval;
         while (1) {
             bool flag = 1;
@@ -85,7 +85,7 @@ int main()
                 numa = min(numa, b[pb].aval);
                 flag = 0;
             }
-            for (pa; b[pa].val >= numa && pa <= n; ++pa) {
+            for (pa; a[pa].val >= numa && pa <= n; ++pa) {
                 vis[a[pa].id] = 1;
                 numb = min(numb, a[pa].bval);
                 flag = 0;
