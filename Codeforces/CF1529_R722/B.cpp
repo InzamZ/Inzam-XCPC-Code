@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define maxn 1000010
+#define maxn 100010
 #define F(a,b,c) for(int (a)=(b);(a)<=(c);++(a))
 #define f(a,b,c) for(int (a)=(b);(a)>=(c);--(a))
 #define INF 0x3f3f3f3f
@@ -15,10 +15,6 @@ int main()
     while (T--) {
         cin >> n;
         cnt = 1;
-        if (n == 1) {
-            cout << 1 << '\n';
-            continue;
-        }
         for (int i = 1; i <= n; ++i)
             cin >> num[i];
         sort(num + 1, num + 1 + n);
