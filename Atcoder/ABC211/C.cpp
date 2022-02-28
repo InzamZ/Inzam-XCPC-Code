@@ -28,19 +28,19 @@ int main()
                     f[i][j] = f[i - 1][j];
             if (s[i] == 'c')
                 f[i][1]++;
-            else if (s[i] == 'h')
+            else if (i && s[i] == 'h')
                 f[i][2] += (f[i - 1][1]);
-            else if (s[i] == 'o')
+            else if (i && s[i] == 'o')
                 f[i][3] += (f[i - 1][2]);
-            else if (s[i] == 'k')
+            else if (i && s[i] == 'k')
                 f[i][4] += (f[i - 1][3]);
-            else if (s[i] == 'u')
+            else if (i && s[i] == 'u')
                 f[i][5] += (f[i - 1][4]);
-            else if (s[i] == 'd')
+            else if (i && s[i] == 'd')
                 f[i][6] += (f[i - 1][5]);
-            else if (s[i] == 'a')
+            else if (i && s[i] == 'a')
                 f[i][7] += (f[i - 1][6]);
-            else if (s[i] == 'i')
+            else if (i && s[i] == 'i')
                 f[i][8] += (f[i - 1][7]);
             for (int j = 1; j <= 8; ++j)
                 f[i][j] %= mod;

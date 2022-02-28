@@ -30,7 +30,7 @@ int main()
         if (s1 == "3B" || s2 == "3B" || s3 == "3B" || s4 == "3B")
             ++cnt[3];
         if (cnt[0] && cnt[1] && cnt[2] && cnt[3])
-            printf("Yse\n");
+            printf("Yes\n");
         else
             printf("No\n");
     }
