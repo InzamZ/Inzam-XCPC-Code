@@ -51,7 +51,7 @@ int main()
                 bool flag = 0;
                 scanf("%lld", &k);
                 if (op == 2) {
-                    auto it = upper_bound(q.begin(), q.end(), x);
+                    auto it = q.upper_bound(x);
                     for (int i = 0; i < k ; ++i) {
                         if (it == q.begin()) {
                             flag = 1;
@@ -65,7 +65,7 @@ int main()
                         printf("%lld\n", *it);
                 }
                 else {
-                    auto it = lower_bound(q.begin(), q.end(), x);
+                    auto it = q.lower_bound(x);
                     for (int i = 1; i < k && it != q.end(); ++i) {
                         ++it;
                     }
