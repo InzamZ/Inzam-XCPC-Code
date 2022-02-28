@@ -7,7 +7,7 @@ using ll = long long;
 #define F(a,b,c) for(int (a)=(b);(a)<=(c);++(a))
 #define f(a,b,c) for(int (a)=(b);(a)>=(c);--(a))
 
-const int maxn = 1e3 + 10;
+const int maxn = 1e6+ 10;
 const int maxb = 110;
 const int inf = 1e9;
 const ll Inf = 1e18;
