@@ -1,3 +1,5 @@
+//InzamZ
+
 #define AWSL <bits/stdc++.h>
 #define awei_sine using namespace std
 #define reg register

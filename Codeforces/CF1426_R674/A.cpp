@@ -1,10 +1,4 @@
-#include <iostream>
-#include<cstdio>
-#include<vector>
-#include<cstring>
-#include<algorithm>
-#include<queue>
-#include <stack>
+//InzamZ
 #include <bits/stdc++.h>
 using namespace std;
 

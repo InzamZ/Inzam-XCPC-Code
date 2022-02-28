@@ -1,3 +1,4 @@
+//InzamZ
 #include<cstdio>
 #include<cmath>
 #include<iostream>

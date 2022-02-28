@@ -1,3 +1,5 @@
+//InzamZ
+
 #include <bits/stdc++.h>
 int ans[20005][6], top = 0;
 bool s[110][110];
