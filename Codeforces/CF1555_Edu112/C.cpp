@@ -32,24 +32,29 @@ inline int _read()
 }
 #endif
 
+ll a[maxn], b[maxn];
+ll asum, bsum, ans;
 
 int main()
 {
     int T = 1;
-    ll n, ans = 0;
+    int m;
     scanf("%d", &T);
     while (T--) {
-        ans = 0;
-        scanf("%lld", &n);
-        ans = n / 120 * 300;
-        if (n == 0)
-            ans = 0;
-        else if (n  <= 6 )
-            ans = 15;
-        else if (n % 2 == 0)
-            ans = n / 2 * 5;
-        else
-            ans = (n + 1) / 2 * 5;
+        int m;
+        asum = bsum = 0;
+        scanf("%d", &m);
+        for (int i = 1; i <= m; ++i) {
+            scanf("%lld", &a[i]);
+            a[i] += a[i - 1];
+        }
+        for (int i = 1; i <= m; ++i) {
+            scanf("%lld", &b[i]);
+            b[i] += b[i - 1];
+        }
+        ans = a[m] - a[1];
+        for (int i = 2; i <= m; ++i)
+            ans = min(max(b[i - 1], a[m] - a[i]), ans);
         printf("%lld\n", ans);
     }
     return 0;

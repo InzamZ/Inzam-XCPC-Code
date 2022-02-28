@@ -35,7 +35,7 @@ inline int _read()
 char s[10][maxn];
 char tmp[10][4];
 
-int cnt[6][maxn];
+int cnt[10][maxn];
 
 int main()
 {
