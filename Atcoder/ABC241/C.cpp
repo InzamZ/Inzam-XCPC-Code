@@ -104,7 +104,7 @@ int main()
                 cnt = 0;
                 int r = 0, c = i;
                 for (int j = 0; !ans; ++j) {
-                    if (r + j < n || c + j < n)
+                    if (r + j >= n || c + j >= n)
                         break;
                     if (imap[r + j][c + j] == '#')
                         ++cnt;
@@ -118,7 +118,7 @@ int main()
                 r = i, c = 0;
                 cnt = 0;
                 for (int j = 0; !ans; ++j) {
-                    if (r + j < n || c + j < n)
+                    if (r + j >= n || c + j >= n)
                         break;
                     if (imap[r + j][c + j] == '#')
                         ++cnt;
@@ -136,7 +136,7 @@ int main()
                 cnt = 0;
                 int r = 0, c = i;
                 for (int j = 0; !ans; ++j) {
-                    if (r + j < n || c - j >= 0 )
+                    if (r + j >= n || c - j < 0 )
                         break;
                     if (imap[r + j][c - j] == '#')
                         ++cnt;
@@ -153,7 +153,7 @@ int main()
                 int r = 0, c = i;
                 r = i, c = n - 1;
                 for (int j = 0; !ans; ++j) {
-                    if (r + j < n || c - j >= 0)
+                    if (r + j >= n || c - j < 0)
                         break;
                     if (imap[r + j][c - j] == '#')
                         ++cnt;
