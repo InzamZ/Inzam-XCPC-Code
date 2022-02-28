@@ -60,7 +60,9 @@ int main()
                     flag = 1;
                 else if (i - a == b - j && check2(b - j))
                     flag = 1;
-                printf("%c%c", flag ? '#' : '.', j == s ? '\n' : ' ');
+                printf("%c", flag ? '#' : '.');
+                if (j == s)
+                    putchar('\n');
             }
         }
     }
