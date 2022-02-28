@@ -3,7 +3,8 @@
         "numeric": "cpp",
         "*.tcc": "cpp",
         "valarray": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "iostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "vscode-live2d.model": "hijiki",
