@@ -56,11 +56,11 @@ int main()
             ans = 0;
             l = _read(); r = _read();
             for (int i = 1; i <= m; ++i) {
-                if (cnt[i][r] - cnt[i][l])
+                if (cnt[i][r] - cnt[i][l - 1])
                     ++ans;
             }
+            printf("%d\n", ans);
         }
-        printf("%d\n", ans);
     }
     return 0;
 }
