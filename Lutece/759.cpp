@@ -43,13 +43,15 @@ int main()
         ans = _read();
         cur = n * 2 - 1;
         res = 0;
-        for (int j = 1; j < n; ++j)
+        for (int j = 1; j < n; ++j) {
             res += cur * j;
+            cur -= 2;
+        }
         if (res + n > ans)
             printf("-1");
         else {
-            for (int i = 1; i < n; ++i)
-                printf("%d ", i);
+            for (int j = 1; j < n; ++j)
+                printf("%d ", j);
             printf("%d", ans - res);
         }
     }
