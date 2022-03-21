@@ -58,31 +58,57 @@ inline void write(T x)
 }
 #endif
 int T = 1, n, ans = 0;
-
-int s1[maxn];
-char s[maxn];
+int cnt[maxn];
+ll a[maxn], b[maxn], sum = 0;
+queue<ll>q;
 
 int main()
 {
     // FIO;
-    // read(T);
-    scanf("%d", &T);
+    read(T);
     while (T--) {
-        ans = 0;
-        scanf("%s", s);
-        n = strlen(s);
-        for (int i = 0; i < n; ++i)
-            s1[s[i] - 'a'] = i;
+        sum = 0;
         bool ok = 1;
-        for (int i = 0; i < n;++i) {
-            if (s1[s[i]-'a'] == i)
-                ok = 0;
-            if (!ok) {
-                ans = i;
-                break;
-            }
+        read(n);
+        for (int i = 1; i <= n; ++i) {
+            read(a[i]);
+            b[i] = a[i];
+            sum += a[i];
         }
-        printf("%s\n", s + ans);
+        sort(b + 1, b + 1 + n);
+        int len = unique(b + 1, b + 1 + n) - b;
+        for (int i = 1; i <= n; ++i) {
+            int id = lower_bound(b + 1, b + len, a[i]) - b;
+            ++cnt[id];
+        }
+        q.push(sum);
+        while (ok && !q.empty()) {
+            if (n == 1)
+                break;
+            ll tmp = q.front(); q.pop();
+            int id = lower_bound(b + 1, b + len, tmp) - b;
+            if (tmp == b[id] && cnt[id])
+                --cnt[id];
+            else if (tmp == 1)
+                ok = 0;
+            else {
+                if (tmp % 2 == 1) {
+                    q.push(tmp / 2);
+                    q.push(tmp / 2 + 1);
+                }
+                else {
+                    q.push(tmp / 2);
+                    q.push(tmp / 2);
+                }
+            }
+            if (q.size() > n)
+                ok = 0;
+        }
+        while (!q.empty())
+            q.pop();
+        for (int i = 0; i <= n; ++i)
+            b[i] = cnt[i] = 0;
+        printf("%s\n", ok ? "YES" : "NO");
     }
     return 0;
 }

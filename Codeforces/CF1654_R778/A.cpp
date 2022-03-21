@@ -59,7 +59,7 @@ inline void write(T x)
 #endif
 int T = 1, n, ans = 0;
 
-int s1[maxn];
+vector<int>s1[30];
 char s[maxn];
 
 int main()
@@ -71,16 +71,31 @@ int main()
         ans = 0;
         scanf("%s", s);
         n = strlen(s);
-        for (int i = 0; i < n; ++i)
-            s1[s[i] - 'a'] = i;
-        bool ok = 1;
-        for (int i = 0; i < n;++i) {
-            if (s1[s[i]-'a'] == i)
-                ok = 0;
+        for (int i = 0; i < n; ++i) {
+            s1[s[i]-'a'].push_back(i);
+        }
+        for (int i = 0; i < n;) {
+            bool ok = 0;
+            int tmp = 0;
+            for (int a=0; a < s1[s[i]-'a'].size(); ++a) {
+                if (s1[s[i]-'a'][a] <= i)
+                    continue;
+                ok = 1;
+                int id = s1[s[i]-'a'][a];
+                for (int j = 1; id + j <= n; ++j) {
+                    if (s[i + j - 1] != s[id + j - 1])
+                        break;
+                    tmp = max(tmp, j);
+                }
+            }
+            i += tmp;
             if (!ok) {
                 ans = i;
                 break;
             }
+        }
+        for (int i = 0; i < 26; ++i) {
+            s1[i].clear();
         }
         printf("%s\n", s + ans);
     }
