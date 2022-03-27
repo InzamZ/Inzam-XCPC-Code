@@ -1,0 +1,22 @@
+{
+  "name": "xcpc-doc",
+  "version": "0.0.1",
+  "description": "xcpc solution",
+  "main": "index.js",
+  "authors": {
+    "name": "Inzam",
+    "email": "me@inzamz.top"
+  },
+  "repository": "/xcpc-doc",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  },
+  "dependencies": {
+    "@renovamen/vuepress-plugin-katex": "^0.2.0"
+  }
+}
