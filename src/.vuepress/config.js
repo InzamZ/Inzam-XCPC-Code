@@ -70,39 +70,6 @@ module.exports = {
                         '',
                         'using-vue',
                     ]
-                },
-                {
-                    title: 'Atcoder',
-                    path: '/atcoder/',
-                    collapsable: false,
-                    children: [
-                        '',
-                        'ABC182',
-                        'ABC188',
-                        'ABC189',
-                        'ABC245',
-                        'ARC106',
-                        'ARC116',
-                        'EducationDPContest',
-                        'keyence2021',
-                    ]
-                },
-                {
-                    title: 'Codeforces',
-                    collapsable: false,
-                    path: '/codeforces/',
-                    children: [
-                        '',
-                        'CF1440_R684',
-                        'CF1451_R685',
-                        'CF1452_EDU98',
-                        'CF1459_R691',
-                        'CF1462_R690',
-                        'CF1463_EDU100',
-                        'CF1609-DR-Aut2021',
-                        'CF1613-Edu118',
-                        'CF1651-Edu124',
-                    ]
                 }
             ],
             '/atcoder/': [
