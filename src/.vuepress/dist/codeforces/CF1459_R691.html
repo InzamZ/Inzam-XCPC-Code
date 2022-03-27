@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Codeforces Round 691 (Div. 2) | InzamZ&#39;s XCPC Solution</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Many Solution">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/assets/css/0.styles.58defd6d.css" as="style"><link rel="preload" href="/assets/js/app.ed8a5a7f.js" as="script"><link rel="preload" href="/assets/js/2.43c3aebb.js" as="script"><link rel="preload" href="/assets/js/21.62d67e32.js" as="script"><link rel="prefetch" href="/assets/js/10.3d25f93a.js"><link rel="prefetch" href="/assets/js/11.88dfb627.js"><link rel="prefetch" href="/assets/js/12.ebcffd16.js"><link rel="prefetch" href="/assets/js/13.5d4ef0c2.js"><link rel="prefetch" href="/assets/js/14.ba49f484.js"><link rel="prefetch" href="/assets/js/15.ac7ae8e0.js"><link rel="prefetch" href="/assets/js/16.85e3bc16.js"><link rel="prefetch" href="/assets/js/17.297a2490.js"><link rel="prefetch" href="/assets/js/18.0e9a8537.js"><link rel="prefetch" href="/assets/js/19.b9c2c622.js"><link rel="prefetch" href="/assets/js/20.93cd8097.js"><link rel="prefetch" href="/assets/js/22.b31d4a22.js"><link rel="prefetch" href="/assets/js/23.6ed445f7.js"><link rel="prefetch" href="/assets/js/24.886bbe21.js"><link rel="prefetch" href="/assets/js/25.eb51fa97.js"><link rel="prefetch" href="/assets/js/26.c0e2646a.js"><link rel="prefetch" href="/assets/js/27.0f04775f.js"><link rel="prefetch" href="/assets/js/28.c502bdaf.js"><link rel="prefetch" href="/assets/js/29.01b00513.js"><link rel="prefetch" href="/assets/js/3.a3110ead.js"><link rel="prefetch" href="/assets/js/30.66cec1d1.js"><link rel="prefetch" href="/assets/js/31.7657de49.js"><link rel="prefetch" href="/assets/js/4.cbc4a546.js"><link rel="prefetch" href="/assets/js/5.cc18cae1.js"><link rel="prefetch" href="/assets/js/6.0b854729.js"><link rel="prefetch" href="/assets/js/7.bcb76d5b.js"><link rel="prefetch" href="/assets/js/8.5404cab2.js"><link rel="prefetch" href="/assets/js/9.a17ece47.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.58defd6d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">InzamZ's XCPC Solution</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="/atcoder/" class="nav-link">
+  Atcoder
+</a></div><div class="nav-item"><a href="/codeforces/" class="nav-link router-link-active">
+  Codeforces
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="/atcoder/" class="nav-link">
+  Atcoder
+</a></div><div class="nav-item"><a href="/codeforces/" class="nav-link router-link-active">
+  Codeforces
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Guide</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/codeforces/" aria-current="page" class="sidebar-link">Codeforces</a></li><li><a href="/codeforces/CF1440_R684.html" class="sidebar-link">Codeforces Round 684 (Div.2)</a></li><li><a href="/codeforces/CF1451_R685.html" class="sidebar-link">Codeforces Round 685 (Div. 2)</a></li><li><a href="/codeforces/CF1452_EDU98.html" class="sidebar-link">Educational Codeforces Round 98 (Rated for Div. 2)</a></li><li><a href="/codeforces/CF1459_R691.html" aria-current="page" class="active sidebar-link">Codeforces Round 691 (Div. 2)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/codeforces/CF1459_R691.html#a-red-blue-shuffle" class="sidebar-link">A. Red-Blue Shuffle</a></li><li class="sidebar-sub-header"><a href="/codeforces/CF1459_R691.html#b-move-and-turn" class="sidebar-link">B. Move and Turn</a></li><li class="sidebar-sub-header"><a href="/codeforces/CF1459_R691.html#c-row-gcd" class="sidebar-link">C. Row GCD</a></li></ul></li><li><a href="/codeforces/CF1462_R690.html" class="sidebar-link">Codeforces Round 690 (Div. 3)</a></li><li><a href="/codeforces/CF1463_EDU100.html" class="sidebar-link">Educational Codeforces Round 100 (Rated for Div. 2)</a></li><li><a href="/codeforces/CF1609-DR-Aut2021.html" class="sidebar-link">Deltix Round, Autumn 2021</a></li><li><a href="/codeforces/CF1613-Edu118.html" class="sidebar-link">Educational Codeforces Round 118</a></li><li><a href="/codeforces/CF1651-Edu124.html" class="sidebar-link">Educational Codeforces Round 124</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>这次时间很舒服 , 下午五点 . 很快就写了签到题 , 本来第二题 20 分钟左右就出了 , 但是没看题 , 是单组数据的 , 结果拖了好久 . 不过想来居然是最好成绩 ? Rank 2500 , 所以低分段就是拼手速 .
+</p> <hr> <h2 id="a-red-blue-shuffle"><a href="#a-red-blue-shuffle" class="header-anchor">#</a> A. Red-Blue Shuffle</h2> <p>看谁的牌大的多呗 .</p> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio&gt;</span></span>
+<span class="token keyword">int</span> num<span class="token punctuation">[</span><span class="token number">10000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+	<span class="token keyword">int</span> t<span class="token punctuation">;</span>
+	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">&quot;%d&quot;</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>t<span class="token operator">--</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		<span class="token keyword">int</span> n<span class="token punctuation">,</span>cr<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>cb<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+		<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">&quot;%d&quot;</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">&quot;%1d&quot;</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">&quot;%1d&quot;</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">&gt;</span>num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> cb<span class="token operator">++</span><span class="token punctuation">;</span>
+			<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">&lt;</span>num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> cr<span class="token operator">++</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>cr<span class="token operator">==</span>cb<span class="token punctuation">)</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;EQUAL\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cr<span class="token operator">&gt;</span>cb<span class="token punctuation">)</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;RED\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cr<span class="token operator">&lt;</span>cb<span class="token punctuation">)</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;BLUE\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="b-move-and-turn"><a href="#b-move-and-turn" class="header-anchor">#</a> B. Move and Turn</h2> <p>其实画一下图就会很明了了 . 发现奇数都是平方 , 偶数就是上一个奇数的四倍 , 但是有重叠部分 , 很巧的是重叠部分刚好是上一个偶数的位置 , 很巧 . 其实也可以简化一下 , 公式就出来了 .</p> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio&gt;</span></span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> ll<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+	ll t<span class="token punctuation">,</span>n<span class="token punctuation">;</span>
+	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">&quot;%lld&quot;</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>n<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span> 
+	<span class="token punctuation">{</span>
+		n<span class="token operator">=</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%lld\n&quot;</span><span class="token punctuation">,</span>n<span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">else</span> 
+	<span class="token punctuation">{</span>
+		n<span class="token operator">=</span>n<span class="token operator">/</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+		<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%lld\n&quot;</span><span class="token punctuation">,</span>n<span class="token operator">*</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="c-row-gcd"><a href="#c-row-gcd" class="header-anchor">#</a> C. Row GCD</h2> <p>详见 <a href="https://www.inzamz.top/2020/12/19/Gcd" target="_blank" rel="noopener noreferrer">最大公因数<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> .</p> <p>To Be Continued.</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">3/27/2022, 6:43:34 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/codeforces/CF1452_EDU98.html" class="prev">
+        Educational Codeforces Round 98 (Rated for Div. 2)
+      </a></span> <span class="next"><a href="/codeforces/CF1462_R690.html">
+        Codeforces Round 690 (Div. 3)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.ed8a5a7f.js" defer></script><script src="/assets/js/2.43c3aebb.js" defer></script><script src="/assets/js/21.62d67e32.js" defer></script>
+  </body>
+</html>
