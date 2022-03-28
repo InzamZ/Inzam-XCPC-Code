@@ -34,12 +34,12 @@ module.exports = {
         lastUpdated: true,
         search: false,
         smoothScroll: true,
-        /*algolia: {
-          apiKey: '<API_KEY>',
-          indexName: '<INDEX_NAME>'
+        algolia: {
+          apiKey: '8eba1a9f0dbb348259599150575e76b2',
+          indexName: 'acmdocs'
           // If Algolia did not provided you any `appId`, use `BH4D9OD16A` or remove this option
-          appId: 'BH4D9OD16A',
-        },*/
+          appId: 'TINIQMJEJ6',
+        },
         nav: [{
             text: 'Guide',
             link: '/guide/',
