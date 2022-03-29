@@ -81,6 +81,7 @@ module.exports = {
                         'ABC182',
                         'ABC188',
                         'ABC189',
+                        'ABC244',
                         'ABC245',
                         'ARC106',
                         'ARC116',
