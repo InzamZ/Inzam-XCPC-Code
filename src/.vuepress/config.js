@@ -123,6 +123,7 @@ module.exports = {
                 // return (new Date(timestamp)).toUTCString() //或者用下面这段
                 // 不要忘了安装 moment
                 // moment.locale(lang)
+                timestamp = moment(timestamp).utcOffset(-800)
                 return moment(timestamp).toString()
             }
         },
