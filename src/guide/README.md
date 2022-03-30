@@ -8,9 +8,9 @@
 
 为了满足选手的训练，有诸多线上测评平台供选手练习。其中最出名的是Codeforces以及Atcoder，本博客的题解大多针对这两个网站。
 
-# [Codeforces](https://acm.inzamz.top/codeforces/)
+# [Codeforces](/codeforces/)
 
-# [Atcoder](https://acm.inzamz.top/atcoder/)
+# [Atcoder](/atcoder/)
 
 
 

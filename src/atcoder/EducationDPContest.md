@@ -9,6 +9,8 @@ tags:
   - 动态规划
 ---
 
+# Atcoder Education DP Contest
+
 > Atcoder上面的 DP 练习题 , 主要是能看到别人的代码 .
 
 <!-- more -->
