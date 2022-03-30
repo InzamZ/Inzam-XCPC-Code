@@ -1,4 +1,5 @@
 const { description } = require('../../package')
+const moment = require('moment')
 
 module.exports = {
     /**
@@ -31,7 +32,6 @@ module.exports = {
         editLinks: false,
         docsDir: '',
         editLinkText: '',
-        lastUpdated: true,
         search: false,
         smoothScroll: true,
         algolia: {
@@ -117,7 +117,6 @@ module.exports = {
             transformer: (timestamp, lang) => {
               //return (new Date(timestamp)).toUTCString() 或者用下面这段
               // 不要忘了安装 moment
-              const moment = require('moment')
               moment.locale(lang)
               return moment(timestamp).toString()
             }
