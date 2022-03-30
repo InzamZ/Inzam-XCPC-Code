@@ -122,8 +122,8 @@ module.exports = {
             transformer: (timestamp, lang) => {
                 // return (new Date(timestamp)).toUTCString() //或者用下面这段
                 // 不要忘了安装 moment
-                // moment.locale(lang)
-                timestamp = moment(timestamp).utcOffset(-800)
+                moment.locale(lang)
+                timestamp = moment(timestamp).utcOffset("-08:00")
                 return moment(timestamp).toString()
             }
         },
