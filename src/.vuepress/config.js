@@ -41,25 +41,25 @@ module.exports = {
             appId: 'TINIQMJEJ6',
         },
         nav: [{
-                text: 'Guide',
-                link: '/guide/',
-            },
-            {
-                text: 'Atcoder',
-                link: '/atcoder/'
-            },
-            {
-                text: 'Codeforces',
-                link: '/codeforces/'
-            },
-            {
-                text: 'Languages',
-                ariaLabel: 'Language Menu',
-                items: [
-                    { text: 'Chinese', link: '/language/chinese/' },
-                    { text: 'Japanese', link: '/language/japanese/' }
-                ]
-            }
+            text: 'Guide',
+            link: '/guide/',
+        },
+        {
+            text: 'Atcoder',
+            link: '/atcoder/'
+        },
+        {
+            text: 'Codeforces',
+            link: '/codeforces/'
+        },
+        {
+            text: 'Languages',
+            ariaLabel: 'Language Menu',
+            items: [
+                { text: 'Chinese', link: '/language/chinese/' },
+                { text: 'Japanese', link: '/language/japanese/' }
+            ]
+        }
         ],
         sidebar: {
             '/guide/': [{
@@ -112,5 +112,15 @@ module.exports = {
         '@vuepress/plugin-back-to-top',
         '@vuepress/plugin-medium-zoom',
         '@renovamen/vuepress-plugin-katex',
+        "@vuepress/last-updated",
+        {
+            transformer: (timestamp, lang) => {
+                // 不要忘了安装 moment
+                const moment = require("moment")
+                moment.locale(lang)
+                return moment(timestamp).fromNow()
+            }
+        }
+
     ]
 }
