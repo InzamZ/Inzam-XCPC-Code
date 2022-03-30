@@ -1,6 +1,6 @@
 const { description } = require('../../package')
 const moment = require('moment')
-moment().zone("+08:00");
+moment().utcOffset(-800)
 
 module.exports = {
     /**
