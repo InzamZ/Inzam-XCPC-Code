@@ -100,6 +100,7 @@ module.exports = {
                     'CF1609-DR-Aut2021',
                     'CF1613-Edu118',
                     'CF1651-Edu124',
+                    'CF1658_R779',
                 ]
             }],
         },
