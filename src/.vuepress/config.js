@@ -115,12 +115,13 @@ module.exports = {
         "@vuepress/last-updated",
         {
             transformer: (timestamp, lang) => {
-                // 不要忘了安装 moment
-                const moment = require("moment")
-                moment.locale(lang)
-                return moment(timestamp).fromNow()
+              //return (new Date(timestamp)).toUTCString() 或者用下面这段
+              // 不要忘了安装 moment
+              const moment = require('moment')
+              moment.locale(lang)
+              return moment(timestamp).toString()
             }
-        }
+          }
 
     ]
 }
