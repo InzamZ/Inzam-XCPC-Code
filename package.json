@@ -14,8 +14,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "vuepress": "^1.9.7",
-    "vuepress-plugin-rss": "^2.0.0"
+    "@vuepress/plugin-google-analytics": "^1.9.7",
+    "vuepress": "^1.9.7"
   },
   "dependencies": {
     "@renovamen/vuepress-plugin-katex": "^0.2.0",

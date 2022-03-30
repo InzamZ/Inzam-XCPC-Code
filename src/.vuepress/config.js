@@ -52,14 +52,18 @@ module.exports = {
             text: 'Codeforces',
             link: '/codeforces/'
         },
-        {
-            text: 'Languages',
-            ariaLabel: 'Language Menu',
-            items: [
-                { text: 'Chinese', link: '/language/chinese/' },
-                { text: 'Japanese', link: '/language/japanese/' }
-            ]
-        }
+            // {
+            //     text: 'RSS',
+            //     link: 'rss.xml'
+            // }
+            // {
+            //     text: 'Languages',
+            //     ariaLabel: 'Language Menu',
+            //     items: [
+            //         { text: 'Chinese', link: '/language/chinese/' },
+            //         { text: 'Japanese', link: '/language/japanese/' }
+            //     ]
+            // }
         ],
         sidebar: {
             '/guide/': [{
@@ -125,15 +129,9 @@ module.exports = {
         {
             hostname: 'https://acm.inzamz.top'
         },
-        'vuepress-plugin-rss',
+        '@vuepress/google-analytics',
         {
-            base_url: '/', // required
-            site_url: 'https://acm.inzamz.top', // required
-            copyright: '2018 Young Tailors', // optional
-            // filter some post
-            filter: (frontmatter) => { return [true | false] },
-            // How much articles
-            count: 20
+            'ga': 'G-LD9KGYN8VE' // UA-00000000-0
         }
 
     ]
