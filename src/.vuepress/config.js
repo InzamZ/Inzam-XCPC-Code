@@ -1,5 +1,6 @@
 const { description } = require('../../package')
 const moment = require('moment')
+moment().zone("+08:00");
 
 module.exports = {
     /**
@@ -41,17 +42,17 @@ module.exports = {
             appId: 'TINIQMJEJ6',
         },
         nav: [{
-            text: 'Guide',
-            link: '/guide/',
-        },
-        {
-            text: 'Atcoder',
-            link: '/atcoder/'
-        },
-        {
-            text: 'Codeforces',
-            link: '/codeforces/'
-        },
+                text: 'Guide',
+                link: '/guide/',
+            },
+            {
+                text: 'Atcoder',
+                link: '/atcoder/'
+            },
+            {
+                text: 'Codeforces',
+                link: '/codeforces/'
+            },
             // {
             //     text: 'RSS',
             //     link: 'rss.xml'
