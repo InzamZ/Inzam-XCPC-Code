@@ -125,7 +125,16 @@ module.exports = {
         {
             hostname: 'https://acm.inzamz.top'
         },
-
+        'vuepress-plugin-rss',
+        {
+            base_url: '/', // required
+            site_url: 'https://acm.inzamz.top', // required
+            copyright: '2018 Young Tailors', // optional
+            // filter some post
+            filter: (frontmatter) => { return [true | false] },
+            // How much articles
+            count: 20
+        }
 
     ]
 }
