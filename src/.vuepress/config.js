@@ -1,6 +1,4 @@
 const { description } = require('../../package')
-const moment = require('moment')
-moment().utcOffset(-800)
 
 module.exports = {
     /**
@@ -42,17 +40,17 @@ module.exports = {
             appId: 'TINIQMJEJ6',
         },
         nav: [{
-                text: 'Guide',
-                link: '/guide/',
-            },
-            {
-                text: 'Atcoder',
-                link: '/atcoder/'
-            },
-            {
-                text: 'Codeforces',
-                link: '/codeforces/'
-            },
+            text: 'Guide',
+            link: '/guide/',
+        },
+        {
+            text: 'Atcoder',
+            link: '/atcoder/'
+        },
+        {
+            text: 'Codeforces',
+            link: '/codeforces/'
+        },
             // {
             //     text: 'RSS',
             //     link: 'rss.xml'
@@ -122,9 +120,9 @@ module.exports = {
             transformer: (timestamp, lang) => {
                 // return (new Date(timestamp)).toUTCString() //或者用下面这段
                 // 不要忘了安装 moment
+                const moment = require('moment')
                 moment.locale(lang);
-                moment().utcOffset(8);
-                return moment().toString();
+                return moment().utcOffset(8).toString();
             }
         },
         'sitemap',
