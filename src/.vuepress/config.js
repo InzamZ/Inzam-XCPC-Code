@@ -122,7 +122,7 @@ module.exports = {
             const moment = require('moment')
             moment.locale(lang)
             return moment(timestamp).fromNow()
-            }
+            },
             dateOptions:{
                 hour12: false,
                 timeZone: 'Asia/Shanghai'
