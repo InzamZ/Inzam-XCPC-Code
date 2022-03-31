@@ -32,6 +32,7 @@ module.exports = {
         docsDir: '',
         editLinkText: '',
         search: false,
+        lastUpdated: '最近更新',
         smoothScroll: true,
         algolia: {
             apiKey: '8eba1a9f0dbb348259599150575e76b2',
