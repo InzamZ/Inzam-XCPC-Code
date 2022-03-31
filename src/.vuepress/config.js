@@ -117,13 +117,10 @@ module.exports = {
         '@renovamen/vuepress-plugin-katex',
         "@vuepress/last-updated",
         {
-            transformer: (timestamp, lang) => {
-                // return (new Date(timestamp)).toUTCString() //或者用下面这段
-                // 不要忘了安装 moment
-                const moment = require('moment')
-                moment.locale(lang);
-                return moment().utcOffset(8).toString();
-            }
+                dateOptions:{
+                    hour12: false,
+                    timeZone: 'Asia/Shanghai'
+                }
         },
         'sitemap',
         {
