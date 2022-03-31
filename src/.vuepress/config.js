@@ -117,10 +117,16 @@ module.exports = {
         '@renovamen/vuepress-plugin-katex',
         "@vuepress/last-updated",
         {
-                dateOptions:{
-                    hour12: false,
-                    timeZone: 'Asia/Shanghai'
-                }
+            transformer: (timestamp, lang) => {
+              // 不要忘了安装 moment
+            const moment = require('moment')
+            moment.locale(lang)
+            return moment(timestamp).fromNow()
+            }
+            dateOptions:{
+                hour12: false,
+                timeZone: 'Asia/Shanghai'
+            }
         },
         'sitemap',
         {
