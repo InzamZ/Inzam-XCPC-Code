@@ -49,10 +49,10 @@ module.exports = {
         lastUpdated: '最近更新',
         smoothScroll: true,
         algolia: {
-            apiKey: '8eba1a9f0dbb348259599150575e76b2',
-            indexName: 'acmdocs',
+            apiKey: 'e268f666983faef92f9e0c4f4cb6209a',
+            indexName: 'inzamz',
             // If Algolia did not provided you any `appId`, use `BH4D9OD16A` or remove this option
-            appId: 'TINIQMJEJ6',
+            appId: 'JTBT5WT94M',
         },
         nav: [{
             text: 'Guide',
