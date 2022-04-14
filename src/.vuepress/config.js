@@ -166,7 +166,6 @@ module.exports = {
                 title: '蓝桥杯',
                 collapsable: false,
                 children: [
-                    '',
                     'lanqiao2022_regional_CA',
                 ]
             }],
