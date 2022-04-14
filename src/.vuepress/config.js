@@ -22,19 +22,19 @@ module.exports = {
     ],
 
     locales: {
-    // 键名是该语言所属的子路径
-    // 作为特例，默认语言可以使用 '/' 作为其路径。
-    '/us/': {
-      lang: 'en-US', // 将会被设置为 <html> 的 lang 属性
-      title: 'VuePress',
-      description: 'Vue-powered Static Site Generator'
+        // 键名是该语言所属的子路径
+        // 作为特例，默认语言可以使用 '/' 作为其路径。
+        '/us/': {
+            lang: 'en-US', // 将会被设置为 <html> 的 lang 属性
+            title: 'VuePress',
+            description: 'Vue-powered Static Site Generator'
+        },
+        '/': {
+            lang: 'zh-CN',
+            title: 'VuePress',
+            description: 'Vue 驱动的静态网站生成器'
+        }
     },
-    '/': {
-      lang: 'zh-CN',
-      title: 'VuePress',
-      description: 'Vue 驱动的静态网站生成器'
-    }
-  },
     /**
      * Theme configuration, here is the default theme configuration for VuePress.
      *
@@ -80,14 +80,55 @@ module.exports = {
             // }
         ],
         sidebar: {
-            '/guide/': [{
-                title: 'XCPC题解',
-                collapsable: false,
-                children: [
-                    '',
-                    'using-vue',
-                ]
-            }],
+            '/guide/': [
+                {
+                    title: 'XCPC题解',
+                    collapsable: false,
+                    children: [
+                        '',
+                        'using-vue',
+                    ]
+                },
+                {
+                    title: 'Atcoder',
+                    collapsable: true,
+                    children: [
+                        '/atcoder/ABC182',
+                        '/atcoder/ABC188',
+                        '/atcoder/ABC189',
+                        '/atcoder/ABC244',
+                        '/atcoder/ABC245',
+                        '/atcoder/ARC106',
+                        '/atcoder/ARC116',
+                        '/atcoder/EducationDPContest',
+                        '/atcoder/keyence2021',
+                    ]
+
+                },
+                {
+                    title: 'Codeforces',
+                    collapsable: true,
+                    children: [
+                        '/codeforces/CF1440_R684',
+                        '/codeforces/CF1451_R685',
+                        '/codeforces/CF1452_EDU98',
+                        '/codeforces/CF1459_R691',
+                        '/codeforces/CF1462_R690',
+                        '/codeforces/CF1463_EDU100',
+                        '/codeforces/CF1609-DR-Aut2021',
+                        '/codeforces/CF1613-Edu118',
+                        '/codeforces/CF1651-Edu124',
+                        '/codeforces/CF1658_R779',
+                    ]
+                },
+                {
+                    title: '蓝桥杯',
+                    collapsable: true,
+                    children: [
+                        '/lanqiao/lanqiao2022_regional_CA',
+                    ]
+                }
+            ],
             '/atcoder/': [{
                 title: 'Atcoder',
                 collapsable: false,
@@ -105,7 +146,7 @@ module.exports = {
                 ]
             }],
             '/codeforces/': [{
-                title: 'Guide',
+                title: 'Codeforces',
                 collapsable: false,
                 children: [
                     '',
@@ -119,6 +160,14 @@ module.exports = {
                     'CF1613-Edu118',
                     'CF1651-Edu124',
                     'CF1658_R779',
+                ]
+            }],
+            '/lanqiao/': [{
+                title: '蓝桥杯',
+                collapsable: false,
+                children: [
+                    '',
+                    'lanqiao2022_regional_CA',
                 ]
             }],
         },
