@@ -46,7 +46,7 @@ module.exports = {
         docsDir: '',
         editLinkText: '',
         search: false,
-        lastUpdated: '最近更新',
+        lastUpdated: '最近更新 UTC时间',
         smoothScroll: true,
         algolia: {
             apiKey: 'e268f666983faef92f9e0c4f4cb6209a',
