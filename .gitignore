@@ -3,6 +3,7 @@
 *.zip
 *.json
 *.drawio
+**/out.txt
 cmp/
 bin/
 
