@@ -55,17 +55,17 @@ module.exports = {
             appId: 'JTBT5WT94M',
         },
         nav: [{
-            text: 'Guide',
-            link: '/guide/',
-        },
-        {
-            text: 'Atcoder',
-            link: '/atcoder/'
-        },
-        {
-            text: 'Codeforces',
-            link: '/codeforces/'
-        },
+                text: 'Guide',
+                link: '/guide/',
+            },
+            {
+                text: 'Atcoder',
+                link: '/atcoder/'
+            },
+            {
+                text: 'Codeforces',
+                link: '/codeforces/'
+            },
             // {
             //     text: 'RSS',
             //     link: 'rss.xml'
@@ -80,8 +80,7 @@ module.exports = {
             // }
         ],
         sidebar: {
-            '/guide/': [
-                {
+            '/guide/': [{
                     title: 'XCPC题解',
                     collapsable: false,
                     children: [
@@ -98,6 +97,7 @@ module.exports = {
                         '/atcoder/ABC189',
                         '/atcoder/ABC244',
                         '/atcoder/ABC245',
+                        '/atcoder/ABC247',
                         '/atcoder/ARC106',
                         '/atcoder/ARC116',
                         '/atcoder/EducationDPContest',
@@ -147,6 +147,7 @@ module.exports = {
                     'ABC189',
                     'ABC244',
                     'ABC245',
+                    'ABC247',
                     'ARC106',
                     'ARC116',
                     'EducationDPContest',

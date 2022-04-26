@@ -11,5 +11,5 @@ features:
   details: InzamZ
 - title: Github
   details: InzamZ:acmcode
-footer: Made by Inzam with ❤️
+footer: Made by Inzam with 👴
 ---
