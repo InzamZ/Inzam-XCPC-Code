@@ -11,7 +11,7 @@
                 "${file}",
                 "-fdiagnostics-color=always",
                 "-g",
-                "-DLOCAL",
+                "-DFI",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.out"
             ],
