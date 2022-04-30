@@ -1,6 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+
+// 该模板默认使用longlong，需要修改的话要修改无穷大INF以及删除上面的define
+
+/**
+ * @param m 边数
+ * @param n 点数
+ * @param e 边的总集合
+ * @param f 连接每个节点的边的集合
+ * @param cur 用于弧优化，记录当前点增广到哪一条边，之前的边不需要重复增广
+ * @param vis BFS使用
+ * @param d 节点层数
+ */
 class dinic
 {
 public:
@@ -34,11 +46,16 @@ public:
         });
         f[to].push_back(m + 1);
     }
+    /**
+     * @brief 算出当前图上节点的层数
+     * @return 返回汇点是否可达
+     */
     bool bfs()
     {
         queue<int>q;
         q.push(s);
-        memset(vis, 0, sizeof(vis));
+        for (int i = 0; i <= n; ++i)
+            vis[i] = 0;
         d[s] = 0;
         vis[s] = 1;
         while (!q.empty()) {
@@ -56,8 +73,7 @@ public:
         return vis[t];
     }
     /**
-     * @brief dfs寻找增广路，可以多次寻找
-     *
+     * @brief dfs寻找增广路，可以多次寻找。使用了当前弧优化
      * @param x 当前所在的节点
      * @param a 当前的流量
      * @return 本次增广路得到的流量
@@ -67,6 +83,7 @@ public:
         if (x == t || a == 0)
             return a;
         int flow = 0; int r, len = f[x].size();
+        // 请勿去除这个引用，这是使用了弧优化
         for (int &i = cur[x]; i < len; i++) {
             edge &o = e[f[x][i]];
             if (d[x] + 1 == d[o.to] && (r = dfs(o.to, min(a, o.cap - o.flow))) > 0) {
@@ -81,7 +98,8 @@ public:
         return flow;
     }
     /**
-     * @brief 求最大流，要求事先完成读入
+     * @brief 求最大流，要求事先完成读入和加边
+     * @return 返回最大流 
      */
     int max_flow()
     {
@@ -92,7 +110,7 @@ public:
         }
         return flow;
     }
-}DI;
+} DI;
 /**
  * @param m 边数
  * @param n 点数
