@@ -2,7 +2,8 @@
 title: 力扣周赛291
 lang: zh-CN
 tags:
-  - 
+  - 贪心
+  - 哈希
 description: 力扣周赛291
 
 ---

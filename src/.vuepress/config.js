@@ -134,6 +134,7 @@ module.exports = {
                     collapsable: true,
                     children: [
                         '/leetcode/LeetCodeCup_2022Spring',
+                        '/leetcode/LeetCodeWeeklyContest291',
                     ]
                 }
             ],
@@ -184,6 +185,7 @@ module.exports = {
                 collapsable: false,
                 children: [
                     'LeetCodeCup_2022Spring',
+                    'LeetCodeWeeklyContest291',
                 ]
             }],
         },
