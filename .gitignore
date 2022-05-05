@@ -1,10 +1,10 @@
 *.out
+*.in
 *.exe
 *.zip
 *.json
 *.drawio
 **/out.txt
-cmp/
 bin/
 
 .VSCodeCounter
