@@ -119,6 +119,7 @@ module.exports = {
                         '/codeforces/CF1613-Edu118',
                         '/codeforces/CF1651-Edu124',
                         '/codeforces/CF1658_R779',
+                        '/codeforces/CF1668_R783',
                         '/codeforces/CF1671_Edu127',
                     ]
                 },
@@ -170,6 +171,7 @@ module.exports = {
                     'CF1613-Edu118',
                     'CF1651-Edu124',
                     'CF1658_R779',
+                    'CF1668_R783',
                     'CF1671_Edu127',
                 ]
             }],
