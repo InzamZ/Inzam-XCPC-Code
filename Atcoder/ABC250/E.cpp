@@ -3,11 +3,6 @@ using namespace std;
 const int maxn = 2e5 + 10;
 using ll = long long;
 
-struct node {
-    int val, l, r;
-    int ls, rs;
-} Tree[maxn << 6];
-
 int a[maxn], b[maxn], ida[maxn], idb[maxn];
 map<int,int>mpa,mpb;
 int main()
