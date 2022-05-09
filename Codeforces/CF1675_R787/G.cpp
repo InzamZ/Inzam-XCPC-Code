@@ -19,10 +19,19 @@ signed main()
         sum[i + 1] = sum[i] + a[i];
     }
     dp[0][0] = 0;
-    for (int k = m; k >= 0; --k)
+    for (int k = m; k >= 0; --k){
         for (int i = 0; i < n; ++i)
             for (int j = 0; j <= m - k; ++j)
                 dp[i + 1][j + k] = min(dp[i + 1][j + k],dp[i][j] + abs(j - sum[i]));
+        // cout << "------ k = " << k << " ------\n";
+        // for (int i = 0; i <= n; ++i){
+        //     cout << "i = " << i << ':'; 
+        //     for (int j = 0; j <= m; ++j)
+        //         if (dp[i][j] != inf) cout << ' ' << dp[i][j];
+        //         else cout << ' ' << '*';
+        //     cout << '\n';
+        // }
+    }
     cout << dp[n][m] << endl;
     return 0;
 }
