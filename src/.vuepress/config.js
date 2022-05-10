@@ -4,7 +4,7 @@ module.exports = {
     /**
      * Ref：https://v1.vuepress.vuejs.org/config/#title
      */
-    title: 'InzamZ\'s XCPC Solution',
+    title: 'InzamZ XCPC Solution',
     /**
      * Ref：https://v1.vuepress.vuejs.org/config/#description
      */
@@ -26,13 +26,13 @@ module.exports = {
         // 作为特例，默认语言可以使用 '/' 作为其路径。
         '/us/': {
             lang: 'en-US', // 将会被设置为 <html> 的 lang 属性
-            title: 'VuePress',
-            description: 'Vue-powered Static Site Generator'
+            title: 'InzamZ XCPC Solution',
+            description: 'Many Solution'
         },
         '/': {
             lang: 'zh-CN',
-            title: 'VuePress',
-            description: 'Vue 驱动的静态网站生成器'
+            title: 'InzamZ XCPC Solution',
+            description: 'Many Solution'
         }
     },
     /**
@@ -55,17 +55,17 @@ module.exports = {
             appId: 'JTBT5WT94M',
         },
         nav: [{
-            text: 'Guide',
-            link: '/guide/',
-        },
-        {
-            text: 'Atcoder',
-            link: '/atcoder/'
-        },
-        {
-            text: 'Codeforces',
-            link: '/codeforces/'
-        },
+                text: 'Guide',
+                link: '/guide/',
+            },
+            {
+                text: 'Atcoder',
+                link: '/atcoder/'
+            },
+            {
+                text: 'Codeforces',
+                link: '/codeforces/'
+            },
             // {
             //     text: 'RSS',
             //     link: 'rss.xml'
@@ -80,8 +80,7 @@ module.exports = {
             // }
         ],
         sidebar: {
-            '/guide/': [
-                {
+            '/guide/': [{
                     title: 'XCPC题解',
                     collapsable: false,
                     children: [
@@ -98,6 +97,8 @@ module.exports = {
                         '/atcoder/ABC189',
                         '/atcoder/ABC244',
                         '/atcoder/ABC245',
+                        '/atcoder/ABC247',
+                        '/atcoder/ABC250',
                         '/atcoder/ARC106',
                         '/atcoder/ARC116',
                         '/atcoder/EducationDPContest',
@@ -119,6 +120,9 @@ module.exports = {
                         '/codeforces/CF1613-Edu118',
                         '/codeforces/CF1651-Edu124',
                         '/codeforces/CF1658_R779',
+                        '/codeforces/CF1668_R783',
+                        '/codeforces/CF1671_Edu127',
+                        '/codeforces/CF1675_R787',
                     ]
                 },
                 {
@@ -126,6 +130,14 @@ module.exports = {
                     collapsable: true,
                     children: [
                         '/lanqiao/lanqiao2022_regional_CA',
+                    ]
+                },
+                {
+                    title: '力扣',
+                    collapsable: true,
+                    children: [
+                        '/leetcode/LeetCodeCup_2022Spring',
+                        '/leetcode/LeetCodeWeeklyContest291',
                     ]
                 }
             ],
@@ -139,6 +151,8 @@ module.exports = {
                     'ABC189',
                     'ABC244',
                     'ABC245',
+                    'ABC247',
+                    'ABC250',
                     'ARC106',
                     'ARC116',
                     'EducationDPContest',
@@ -160,6 +174,9 @@ module.exports = {
                     'CF1613-Edu118',
                     'CF1651-Edu124',
                     'CF1658_R779',
+                    'CF1668_R783',
+                    'CF1671_Edu127',
+                    'CF1675_R787',
                 ]
             }],
             '/lanqiao/': [{
@@ -167,6 +184,14 @@ module.exports = {
                 collapsable: false,
                 children: [
                     'lanqiao2022_regional_CA',
+                ]
+            }],
+            '/leetcode/': [{
+                title: '力扣',
+                collapsable: false,
+                children: [
+                    'LeetCodeCup_2022Spring',
+                    'LeetCodeWeeklyContest291',
                 ]
             }],
         },

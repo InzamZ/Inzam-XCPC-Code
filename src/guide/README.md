@@ -9,7 +9,9 @@
 为了满足选手的训练，有诸多线上测评平台供选手练习。其中最出名的是Codeforces以及Atcoder，本博客的题解大多针对这两个网站。
 
 # [Codeforces](/codeforces/)
+![cf](http://cfrating.ihcr.top/?user=Misaka_No%2E19614)
 
+![cf](http://cfrating.ihcr.top/?user=Inzam_Z)
 # [Atcoder](/atcoder/)
 
 
