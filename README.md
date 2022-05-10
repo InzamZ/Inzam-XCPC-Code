@@ -10,6 +10,11 @@
 
 # [Codeforces](https://acm.inzamz.top/codeforces/)
 
+
+![](http://cfrating.ihcr.top/?user=Misaka_No%2E19614)
+
+![](http://cfrating.ihcr.top/?user=Inzam_Z)
+
 # [Atcoder](https://acm.inzamz.top/atcoder/)
 
 
