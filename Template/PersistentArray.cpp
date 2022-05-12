@@ -58,8 +58,7 @@ inline int update(int pre)
         Tree[now].rs = update(Tree[now].rs);
     return now;
 }
-inline int read()
-{
+inline int read(){
     int X = 0;
     bool flag = 1;
     char ch = getchar();
