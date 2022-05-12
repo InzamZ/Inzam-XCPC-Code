@@ -1,44 +1,89 @@
-## 杂七杂八
-
-### 快速读入
-
-```cpp
-inline char nc(){
-    static char buf[100000], *p1 = buf, *p2 = buf;
-    return p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 100000, stdin), p1 == p2) ? EOF : *p1++;
-}
-inline int read() {
-  int x = 0, w = 1;
-  char ch = 0;
-  while (ch < '0' || ch > '9') {
-     if (ch == '-') w = -1;
-     ch = getchar();
-  }
-  while (ch >= '0' && ch <= '9') {
-      x = (x<<3) + (x<<1) + (ch - '0');
-      ch = getchar();
-  }
-  return x * w;
-}
-```
-
-### 对拍
-
-```bash
-int main() {
-  while (true) {
-    system("gen > test.in");  // 数据生成器将生成数据写入输入文件
-    system("test1.exe < test.in > a.out");  // 获取程序1输出
-    system("test2.exe < test.in > b.out");  // 获取程序2输出
-    if (system("fc a.out b.out")) {
-      system("pause");  // 方便查看不同处
-      return 0;
-    }
-  }
-}
-```
 
 ## 数据结构
+
+### 珂朵莉树
+```cpp
+ll rnk(){
+	ll ret=seed;
+	seed=(seed*7+13)%MOD;
+	return ret;
+}
+struct Node{
+  int l,r;
+  mutable ll value;//
+  Node(int a,int b,long long c):l(a),r(b),value(c){}
+  Node(int a):l(a),r(0),value(0){}
+  bool operator < (const Node& o) const{
+    return l<o.l;
+  }
+};
+set<Node>s;
+set<Node>::iterator split(int pos){
+	set<Node>::iterator it=s.lower_bound(Node(pos));
+	if (it->l==pos && it!=s.end()) return it;// 
+	--it;
+	if (pos > it->r) return s.end();//
+	int L=it->l,R=it->r;
+	ll V=it->value;
+	s.erase(it);
+	s.insert(Node(L,pos-1,V));
+	return s.insert(Node(pos,R,V)).first;
+}
+void assign(int l,int r,int v){
+	split(l);
+	set<Node>::iterator R=split(r+1);
+	set<Node>::iterator L=split(l);
+	s.erase(L,R);
+	s.insert(Node(l,r,v));
+}
+void add(int l,int r,int v){
+	split(l);
+	auto R=split(r+1),L=split(l);
+	for (;L!=R;++L){
+		L->value += v;
+	}
+}
+ll kth(int l,int r, int k){
+	split(l);
+	vector< pair<ll,int> >q;
+	q.clear();
+	set<Node>::iterator R=split(r+1);
+	set<Node>::iterator L=split(l);
+	for (set<Node>::iterator it=L;it!=R;++it){
+		q.push_back({ it->value , it->r - it->l + 1});
+	}
+	sort(q.begin(),q.end());//
+	for (auto i:q)
+	{
+		k-=i.second;
+		if (k<=0) return i.first; 
+	}
+	return -1;
+}
+ll qpow(ll a,ll x,ll y){
+	ll ans=1,res=a%y;
+	while(x!=0){
+		if ( x & 1 ) {
+			ans*=res;
+			ans=ans%y;
+		}
+		res=res*res%y;
+		x>>=1;
+	}
+	return ans%y;
+}
+ll sum(int l,int r,int x,int y){
+	split(l);
+	ll ans=0;
+	set<Node>::iterator R=split(r+1);
+	set<Node>::iterator L=split(l);
+	for (set<Node>::iterator it=L;it!=R;++it){
+		ans+=( (ll)( it->r - it->l + 1 ) * qpow(it->value,x,y));
+		ans=ans%y;
+	}
+	return ans;
+}
+```
 
 ### 树状数组
 
@@ -864,88 +909,68 @@ void kmp(){
 ### AC自动机
 
 ```cpp
-struct node {
-    int f;
-    int book;
-    int next[26];
-} tree[1000051];
-struct imark {
-    int num, str;
-} ans[1000051];
-bool cmp(imark a, imark b)
+class Automaton
 {
-    if (a.num == b.num)
-        return a.str < b.str;
-    else
-        return a.num > b.num;
-}
-char a[155][1000];
-void clean(int x){
-    memset(tree[x].next, 0, sizeof(tree[x].next));
-    tree[x].f = 0;
-    tree[x].book = 0;
-}
-char s[1000506];
-int ta = 0;
-void build(int x){
-    int cur = 0, l = strlen(a[x]);
-    for (int i = 0; i < l; ++i) {
-        if (!tree[cur].next[a[x][i] - 'a']) {
-            tree[cur].next[a[x][i] - 'a'] = ++ta;
-            clean(ta);
-        }
-        cur = tree[cur].next[a[x][i] - 'a'];
+public:
+    static const int maxn = 2e2 + 10, maxs = 1e6 + 10, maxtmp = 1e3 + 10;
+    /**
+     * @brief a是匹配串,s是文本串,
+     */
+    char a[maxn][maxtmp], s[maxs];
+    int tot = 0;
+    struct node {
+        int f, book, next[26];
+    } tree[maxs];
+    /**
+     * @brief 对Trie树节点初始化
+     */
+    void clean(int x)
+    {
+        memset(tree[x].next, 0, sizeof(tree[x].next));
+        tree[x].f = 0;
+        tree[x].book = 0;
     }
-    tree[cur].book = x;
-}
-int main(){
-//  freopen("testdata.in","r",stdin);
-    int n;
-    queue<int> q;
-    while (scanf ("%d", &n) == 1 && n) {
-        ta = 0;
-        clean(0);
-        for (int i = 1; i <= n; i++) {
-            scanf ("%s", a[i]);
-            ans[i].num = 0;
-            ans[i].str = i;
-            build(i);
+    /**
+     *@brief 对每个字符串更新Trie树,随后调用getfail()
+     */
+    void build(int x)
+    {
+        int cur = 0, l = strlen(a[x]);
+        for (int i = 0; i < l; ++i) {
+            if (!tree[cur].next[a[x][i] - 'a']) {
+                tree[cur].next[a[x][i] - 'a'] = ++tot;
+                clean(tot);
+            }
+            cur = tree[cur].next[a[x][i] - 'a'];
         }
-        scanf ("%s", s);
-        tree[0].f = 0;
-        for (int i = 0; i < 26; i++) {
+        tree[cur].book = x;
+    }
+    void getfail()
+    {
+        queue<int> q; tree[0].f = 0;
+        for (int i = 0; i < 26; i++)
             if (tree[0].next[i] != 0) {
                 tree[tree[0].next[i]].f = 0;
                 q.push(tree[0].next[i]);
             }
-        }
         while (!q.empty()) {
-            int now = q.front();
-            q.pop();
-            for (int i = 0; i < 26; i++) {
+            int now = q.front(); q.pop();
+            for (int i = 0; i < 26; i++)
                 if (tree[now].next[i]) {
                     tree[tree[now].next[i]].f = tree[tree[now].f].next[i];
                     q.push(tree[now].next[i]);
                 }
                 else
                     tree[now].next[i] = tree[tree[now].f].next[i];
-            }
         }
-        int now = 0, j = -1, l = strlen(s);
-        for (int i = 0; i < l; ++i) {
-            now = tree[now].next[s[i] - 'a'];
-            for (int j = now; j != 0; j = tree[j].f)
-                ans[tree[j].book].num++;
-        }
-        sort(ans + 1, ans + 1 + n, cmp);
-        printf("%d\n", ans[1].num);
-        cout << a[ans[1].str] << endl;
-        for (int i = 2; i <= n; i++) {
-            if (ans[i].num == ans[i - 1].num)
-                cout << a[ans[i].str] << endl;
-            else
-                break;
-        }
+    }
+} aca;
+int main(){
+    int now = 0, j = -1, l = strlen(aca.s);
+    for (int i = 0; i < l; ++i) {
+        now = aca.tree[now].next[aca.s[i] - 'a'];
+        for (int j = now; j != 0; j = aca.tree[j].f)
+            ans[aca.tree[j].book].num++;
     }
     return 0;
 }
@@ -986,13 +1011,9 @@ public:
     void addedge(int from, int to, int cap)
     {
         int m = e.size();
-        e.push_back((edge) {
-            to, cap, 0
-        });
+        e.push_back((edge) { to, cap, 0 });
         f[from].push_back(m);
-        e.push_back((edge) {
-            from, 0, 0
-        });
+        e.push_back((edge) { from, 0, 0 });
         f[to].push_back(m + 1);
     }
     /**
@@ -1037,10 +1058,8 @@ public:
             if (d[x] + 1 == d[o.to] && (r = dfs(o.to, min(a, o.cap - o.flow))) > 0) {
                 o.flow += r;
                 e[f[x][i] ^ 1].flow -= r;
-                flow += r;
-                a -= r;
-                if (a == 0)
-                    break;
+                flow += r; a -= r;
+                if (a == 0) break;
             }
         }
         return flow;
@@ -1049,7 +1068,7 @@ public:
      * @brief 求最大流，要求事先完成读入和加边
      * @return 返回最大流 
      */
-    int max_flow(){
+    int max_flow() {
         int flow = 0;
         while (bfs()) {
             memset(cur, 0, sizeof(cur));
@@ -1119,14 +1138,8 @@ public:
 };
 signed main()
 {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(0);
-    cin >> DI.n >> DI.m >> DI.s >> DI.t;
-    for (int i = 1; i <= DI.m; i++) {
-        int a, b, c;
-        cin >> a >> b >> c;
+    for (int i = 1; i <= DI.m; i++) 
         DI.addedge(a, b, c);
-    }
     printf("%lld\n", DI.max_flow());
     return 0;
 }
@@ -1484,3 +1497,42 @@ int main()
 }
 ```
 
+## 杂七杂八
+
+### 快速读入
+
+```cpp
+inline char nc(){
+    static char buf[100000], *p1 = buf, *p2 = buf;
+    return p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 100000, stdin), p1 == p2) ? EOF : *p1++;
+}
+inline int read() {
+  int x = 0, w = 1;
+  char ch = 0;
+  while (ch < '0' || ch > '9') {
+     if (ch == '-') w = -1;
+     ch = getchar();
+  }
+  while (ch >= '0' && ch <= '9') {
+      x = (x<<3) + (x<<1) + (ch - '0');
+      ch = getchar();
+  }
+  return x * w;
+}
+```
+
+### 对拍
+
+```bash
+int main() {
+  while (true) {
+    system("gen > test.in");  // 数据生成器将生成数据写入输入文件
+    system("test1.exe < test.in > a.out");  // 获取程序1输出
+    system("test2.exe < test.in > b.out");  // 获取程序2输出
+    if (system("fc a.out b.out")) {
+      system("pause");  // 方便查看不同处
+      return 0;
+    }
+  }
+}
+```
