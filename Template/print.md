@@ -1512,6 +1512,40 @@ int main()
 }
 ```
 
+## 动态规划
+
+### 数位dp
+```cpp
+char a[maxn], b[maxn];
+int bi[maxn];
+ll dp[maxn][15][15];
+ll dfs(int pos, int pre1, int pre2, bool limit){
+    if (pos == -1 ) {
+        //cout << pre1 << pre2 << endl;
+        return 1;
+    }
+    if (!limit  && dp[pos][pre1][pre2] != -1 && pre2 != 10 && pre1 != 10)
+        return dp[pos][pre1][pre2];
+    int up = limit ? bi[pos] : 9;
+    ll ans = 0;
+    for (int i = 0; i <= up; ++i) {
+        if (( i == 2 && pre2 == 4 )
+                || ( i == 5 && pre2 == 3 && pre1 == 1 ))
+            continue;
+        ans += dfs(pos - 1, pre2, i, limit && i == bi[pos]), ans %= mod;
+    }
+    if (!limit && pre2 != 10 && pre1 != 10)
+        dp[pos][pre1][pre2] = ans % mod;
+    return ans % mod;
+}
+ll solve(char *x){
+    int pos = 0;
+    for (int i = strlen(x) - 1; i >= 0; --i)
+        bi[pos++] = x[i] - 48;
+    return dfs(pos - 1, 10, 10, true);
+}
+```
+
 ## 杂七杂八
 
 ### 快速读入
@@ -1526,11 +1560,11 @@ inline int read() {
   char ch = 0;
   while (ch < '0' || ch > '9') {
      if (ch == '-') w = -1;
-     ch = getchar();
+     ch = nc();
   }
   while (ch >= '0' && ch <= '9') {
       x = (x<<3) + (x<<1) + (ch - '0');
-      ch = getchar();
+      ch = nc();
   }
   return x * w;
 }
