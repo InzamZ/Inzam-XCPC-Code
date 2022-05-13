@@ -75,32 +75,9 @@ signed main() {
         for (int i = 1; i <= bcnt; i++)
             cnt[i] /= 2;
         int l = 1, r = n;
-        for (int i = 1; i <= bcnt; i++) {
-            int cur = r, fir = r;
-            --r;
-            cout << cnt[i] << endl;
-            if (cnt[i] == 1) {
-                ans += 2 * (r - l);
-                --r;
-                --l;
-            }
-            else {
-                for (int j = 1; j < cnt[i]; j++) {
-                    if (j & 1) {
-                        ans += abs(cur - l);
-                        cur = l;
-                        ++l;
-                    }
-                    else {
-                        ans += abs(cur - r);
-                        cur = r;
-                        --r;
-                    }
-                    // cout << ans << '\n';
-                }
-                ans += abs(cur - fir);
-            }
-        }
+        for (int i = 1; i <= bcnt; i++)
+            ans += cnt[i] / 2;
+        ans = 2 * ans * (n - ans);
         cout << ans << '\n';
     }
     return 0;
