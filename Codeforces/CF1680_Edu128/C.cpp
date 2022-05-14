@@ -17,13 +17,14 @@ string s;
 pii p[maxn];
 
 bool ck(int x) {
+    x = cnt1[len] - x;
     int l = 0, ans = 0, r = s.size();
-    if (v.size() < x)
+    if (x <= 1)
         return true;
-    ans = cnt0[len] - cnt0[v[x - 1]];
-    for (int i = 0; i + x < v.size(); i++)
-        ans = min(cnt0[len] - cnt0[v[x + i]] + cnt0[v[i]], ans);
-    return ans <= x;
+    ans = cnt0[v[x - 1]] - cnt0[v[0]];
+    for (int i = 0; i + x < v.size() - 1; i++)
+        ans = min(cnt0[v[x + i]] - cnt0[v[i + 1]], ans);
+    return ans <= cnt1[len] - x;
 }
 
 int solve() {
@@ -31,6 +32,8 @@ int solve() {
     cin >> s;
     v.clear();
     len = s.length();
+    for (int i = len - 1; s[i] == '0' && i >= 0; i--)
+        len--;
     if (s[0] == '0')
         cnt0[0] = 1;
     else {
@@ -51,10 +54,10 @@ int solve() {
     v.push_back(len);
     cnt0[len] = cnt0[len - 1];
     cnt1[len] = cnt1[len - 1];
-    int l = 1, r = cnt1[len], mid;
+    int l = -1, r = cnt1[len], mid;
     while (l + 1 < r) {
         mid = (l + r) >> 1;
-        if (ck(cnt1[len] - mid))
+        if (ck(mid))
             r = mid;
         else
             l = mid;
