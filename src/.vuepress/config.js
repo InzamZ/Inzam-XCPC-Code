@@ -55,16 +55,18 @@ module.exports = {
             appId: 'JTBT5WT94M',
         },
         nav: [{
-                text: 'Guide',
-                link: '/guide/',
+                text: '题解合集',
+                ariaLabel: '题解目录',
+                items: [
+                    { text: 'Codeforces', link: '/codeforces/' },
+                    { text: 'Atcoder', link: '/atcoder/' },
+                    { text: '力扣', link: '/leetcode/' },
+                    { text: '其他比赛', link: '/Other/' },
+                ]
             },
             {
-                text: 'Atcoder',
-                link: '/atcoder/'
-            },
-            {
-                text: 'Codeforces',
-                link: '/codeforces/'
+                text: '学习笔记',
+                link: '/note/'
             },
             // {
             //     text: 'RSS',
@@ -139,6 +141,13 @@ module.exports = {
                         '/leetcode/LeetCodeCup_2022Spring',
                         '/leetcode/LeetCodeWeeklyContest291',
                     ]
+                },
+                {
+                    title: '其他比赛',
+                    collapsable: true,
+                    children: [
+                        '/Other/UESTCPC2022',
+                    ]
                 }
             ],
             '/atcoder/': [{
@@ -194,6 +203,17 @@ module.exports = {
                     'LeetCodeWeeklyContest291',
                 ]
             }],
+            '/Other/': [{
+                title: '其他比赛',
+                collapsable: false,
+                children: [
+                    'UESTCPC2022',
+                ]
+            }],
+            '/note/': [{
+                title: '学习笔记',
+                collapsable: false,
+            }]
         },
     },
     /**
