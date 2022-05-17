@@ -5,7 +5,8 @@
         "valarray": "cpp",
         "utility": "cpp",
         "iostream": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "shared_mutex": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "vscode-live2d.model": "hijiki",
