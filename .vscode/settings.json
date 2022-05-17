@@ -6,7 +6,8 @@
         "utility": "cpp",
         "iostream": "cpp",
         "random": "cpp",
-        "shared_mutex": "c"
+        "shared_mutex": "c",
+        "ostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "vscode-live2d.model": "hijiki",

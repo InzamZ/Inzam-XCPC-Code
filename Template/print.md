@@ -909,44 +909,45 @@ void kmp(){
 ### AC自动机
 
 ```cpp
-class Automaton
-{
-public:
-    static const int maxn = 2e2 + 10, maxs = 1e6 + 10, maxtmp = 1e3 + 10;
+const int maxn = 2e5 + 10, maxs = 2e6 + 10;
+struct imark {
+    int num, str;
+} ans[maxn];
+class Automaton {
+  public:
     /**
      * @brief a是匹配串,s是文本串,
      */
-    char a[maxn][maxtmp], s[maxs];
-    int tot = 0;
+    char a[maxn], s[maxs];
+    int tot = 0, n, indeg[maxs];
     struct node {
-        int f, book, next[26];
+        int f, book, next[26], cnt;
     } tree[maxs];
     /**
      * @brief 对Trie树节点初始化
      */
-    void clean(int x)
-    {
+    void clean(int x) {
         memset(tree[x].next, 0, sizeof(tree[x].next));
-        tree[x].f = 0;
-        tree[x].book = 0;
+        indeg[x] = tree[x].f = tree[x].book = tree[x].cnt = 0;
     }
     /**
      *@brief 对每个字符串更新Trie树,随后调用getfail()
      */
-    void build(int x)
-    {
-        int cur = 0, l = strlen(a[x]);
+    void build(int x) {
+        int cur = 0, l = strlen(a);
         for (int i = 0; i < l; ++i) {
-            if (!tree[cur].next[a[x][i] - 'a']) {
-                tree[cur].next[a[x][i] - 'a'] = ++tot;
+            if (!tree[cur].next[a[i] - 'a']) {
+                tree[cur].next[a[i] - 'a'] = ++tot;
                 clean(tot);
             }
-            cur = tree[cur].next[a[x][i] - 'a'];
+            cur = tree[cur].next[a[i] - 'a'];
         }
-        tree[cur].book = x;
+        if (tree[cur].book == 0)
+            tree[cur].book = x;
+        else
+            ans[x].str = tree[cur].book;
     }
-    void getfail()
-    {
+    void getfail() {
         queue<int> q; tree[0].f = 0;
         for (int i = 0; i < 26; i++)
             if (tree[0].next[i] != 0) {
@@ -958,22 +959,36 @@ public:
             for (int i = 0; i < 26; i++)
                 if (tree[now].next[i]) {
                     tree[tree[now].next[i]].f = tree[tree[now].f].next[i];
+                    indeg[tree[tree[now].next[i]].f]++;
                     q.push(tree[now].next[i]);
                 }
                 else
                     tree[now].next[i] = tree[tree[now].f].next[i];
         }
     }
-} aca;
-int main(){
-    int now = 0, j = -1, l = strlen(aca.s);
-    for (int i = 0; i < l; ++i) {
-        now = aca.tree[now].next[aca.s[i] - 'a'];
-        for (int j = now; j != 0; j = aca.tree[j].f)
-            ans[aca.tree[j].book].num++;
+    void query() {
+        int now = 0, j = -1, l = strlen(s);
+        for (int i = 0; i < l; ++i) {
+            now = tree[now].next[s[i] - 'a'];
+            tree[now].cnt++;
+        }
     }
-    return 0;
-}
+    void topu() {
+        queue<int>q;
+        for (int i = 0; i <= tot; ++i)
+            if (indeg[i] == 0)
+                q.push(i);
+        while (!q.empty()) {
+            int u = q.front(); q.pop();
+            ans[tree[u].book].num = tree[u].cnt;
+            int f = tree[u].f;
+            indeg[f]--;
+            tree[f].cnt += tree[u].cnt;
+            if (indeg[f] == 0)
+                q.push(f);
+        }
+    }
+} aca;
 ```
 
 ## 图论
@@ -1497,6 +1512,40 @@ int main()
 }
 ```
 
+## 动态规划
+
+### 数位dp
+```cpp
+char a[maxn], b[maxn];
+int bi[maxn];
+ll dp[maxn][15][15];
+ll dfs(int pos, int pre1, int pre2, bool limit){
+    if (pos == -1 ) {
+        //cout << pre1 << pre2 << endl;
+        return 1;
+    }
+    if (!limit  && dp[pos][pre1][pre2] != -1 && pre2 != 10 && pre1 != 10)
+        return dp[pos][pre1][pre2];
+    int up = limit ? bi[pos] : 9;
+    ll ans = 0;
+    for (int i = 0; i <= up; ++i) {
+        if (( i == 2 && pre2 == 4 )
+                || ( i == 5 && pre2 == 3 && pre1 == 1 ))
+            continue;
+        ans += dfs(pos - 1, pre2, i, limit && i == bi[pos]), ans %= mod;
+    }
+    if (!limit && pre2 != 10 && pre1 != 10)
+        dp[pos][pre1][pre2] = ans % mod;
+    return ans % mod;
+}
+ll solve(char *x){
+    int pos = 0;
+    for (int i = strlen(x) - 1; i >= 0; --i)
+        bi[pos++] = x[i] - 48;
+    return dfs(pos - 1, 10, 10, true);
+}
+```
+
 ## 杂七杂八
 
 ### 快速读入
@@ -1511,11 +1560,11 @@ inline int read() {
   char ch = 0;
   while (ch < '0' || ch > '9') {
      if (ch == '-') w = -1;
-     ch = getchar();
+     ch = nc();
   }
   while (ch >= '0' && ch <= '9') {
       x = (x<<3) + (x<<1) + (ch - '0');
-      ch = getchar();
+      ch = nc();
   }
   return x * w;
 }
