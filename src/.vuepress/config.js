@@ -58,8 +58,9 @@ module.exports = {
                 text: '题解合集',
                 ariaLabel: '题解目录',
                 items: [
-                    { text: 'Codeforces', link: '/codeforces/' },
-                    { text: 'Atcoder', link: '/atcoder/' },
+                    { text: 'Codeforces', link: '/Codeforces/' },
+                    { text: 'Atcoder', link: '/Atcoder/' },
+                    { text: 'CodeChef', link: '/CodeChef/' },
                     { text: '力扣', link: '/leetcode/' },
                     { text: '其他比赛', link: '/Other/' },
                 ]
@@ -94,17 +95,17 @@ module.exports = {
                     title: 'Atcoder',
                     collapsable: true,
                     children: [
-                        '/atcoder/ABC182',
-                        '/atcoder/ABC188',
-                        '/atcoder/ABC189',
-                        '/atcoder/ABC244',
-                        '/atcoder/ABC245',
-                        '/atcoder/ABC247',
-                        '/atcoder/ABC250',
-                        '/atcoder/ARC106',
-                        '/atcoder/ARC116',
-                        '/atcoder/EducationDPContest',
-                        '/atcoder/keyence2021',
+                        '/Atcoder/ABC182',
+                        '/Atcoder/ABC188',
+                        '/Atcoder/ABC189',
+                        '/Atcoder/ABC244',
+                        '/Atcoder/ABC245',
+                        '/Atcoder/ABC247',
+                        '/Atcoder/ABC250',
+                        '/Atcoder/ARC106',
+                        '/Atcoder/ARC116',
+                        '/Atcoder/EducationDPContest',
+                        '/Atcoder/keyence2021',
                     ]
 
                 },
@@ -112,34 +113,41 @@ module.exports = {
                     title: 'Codeforces',
                     collapsable: true,
                     children: [
-                        '/codeforces/CF1440_R684',
-                        '/codeforces/CF1451_R685',
-                        '/codeforces/CF1452_EDU98',
-                        '/codeforces/CF1459_R691',
-                        '/codeforces/CF1462_R690',
-                        '/codeforces/CF1463_EDU100',
-                        '/codeforces/CF1609-DR-Aut2021',
-                        '/codeforces/CF1613-Edu118',
-                        '/codeforces/CF1651-Edu124',
-                        '/codeforces/CF1658_R779',
-                        '/codeforces/CF1668_R783',
-                        '/codeforces/CF1671_Edu127',
-                        '/codeforces/CF1675_R787',
+                        '/Codeforces/CF1440_R684',
+                        '/Codeforces/CF1451_R685',
+                        '/Codeforces/CF1452_EDU98',
+                        '/Codeforces/CF1459_R691',
+                        '/Codeforces/CF1462_R690',
+                        '/Codeforces/CF1463_EDU100',
+                        '/Codeforces/CF1609-DR-Aut2021',
+                        '/Codeforces/CF1613-Edu118',
+                        '/Codeforces/CF1651-Edu124',
+                        '/Codeforces/CF1658_R779',
+                        '/Codeforces/CF1668_R783',
+                        '/Codeforces/CF1671_Edu127',
+                        '/Codeforces/CF1675_R787',
+                    ]
+                },
+                {
+                    title: 'CodeChef',
+                    collapsable: true,
+                    children: [
+                        '/CodeChef/STARTER39',
                     ]
                 },
                 {
                     title: '蓝桥杯',
                     collapsable: true,
                     children: [
-                        '/lanqiao/lanqiao2022_regional_CA',
+                        '/Lanqiao/lanqiao2022_regional_CA',
                     ]
                 },
                 {
                     title: '力扣',
                     collapsable: true,
                     children: [
-                        '/leetcode/LeetCodeCup_2022Spring',
-                        '/leetcode/LeetCodeWeeklyContest291',
+                        '/Leetcode/LeetCodeCup_2022Spring',
+                        '/Leetcode/LeetCodeWeeklyContest291',
                     ]
                 },
                 {
@@ -150,7 +158,7 @@ module.exports = {
                     ]
                 }
             ],
-            '/atcoder/': [{
+            '/Atcoder/': [{
                 title: 'Atcoder',
                 collapsable: false,
                 children: [
@@ -168,7 +176,7 @@ module.exports = {
                     'keyence2021',
                 ]
             }],
-            '/codeforces/': [{
+            '/Codeforces/': [{
                 title: 'Codeforces',
                 collapsable: false,
                 children: [
@@ -188,14 +196,22 @@ module.exports = {
                     'CF1675_R787',
                 ]
             }],
-            '/lanqiao/': [{
+            '/CodeChef/': [{
+                title: 'CodeChef',
+                collapsable: false,
+                children: [
+                    '',
+                    'STARTER39',
+                ]
+            }],
+            '/Lanqiao/': [{
                 title: '蓝桥杯',
                 collapsable: false,
                 children: [
                     'lanqiao2022_regional_CA',
                 ]
             }],
-            '/leetcode/': [{
+            '/Leetcode/': [{
                 title: '力扣',
                 collapsable: false,
                 children: [
@@ -210,7 +226,7 @@ module.exports = {
                     'UESTCPC2022',
                 ]
             }],
-            '/note/': [{
+            '/Note/': [{
                 title: '学习笔记',
                 collapsable: false,
             }]
