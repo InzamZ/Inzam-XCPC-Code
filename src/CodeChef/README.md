@@ -1,3 +1,7 @@
 # CodeChef
 
-Some Solution
+## 简介
+CodeChef是一项印度公司Directi发起的教育计划 , 在2020年被Unacademy收购 , 是一个竞赛性编程社区 . 该社区甚至为妇女以及儿童专门设置了培训课程 , 看起来还不错 . 
+
+## 难度评估
+不久前经过改革以后 , 当前有 DIV4 到 DIV1 四档 . 经评估难度较 Codeforces 小 , 再打几场之后更新 . 
