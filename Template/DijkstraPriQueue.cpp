@@ -13,7 +13,7 @@ using namespace std;
 const int maxn = 5e5 + 10;
 const int maxb = 110;
 const int inf = 1e18;
-int T = 1, n, m, s, ans = 0, dis[maxn], pre[maxn], cnt[maxn];
+int T = 1, n, m, s, ans = 0, dis[maxn], pre[maxn];
 
 struct edg {
     int id, v, w;
@@ -35,24 +35,19 @@ vector<edg>e[maxn];
 
 signed main() {
     FIO;
-    cin >> n >> m ;
-    f(i, 1, n) {
-        dis[i] = inf;
-        pre[i] = 0;
-    }
+    cin >> n >> m >> s;
+    f(i, 1, n) dis[i] = inf;
     f(i, 1, m) {
         int u, v, w;
         cin >> u >> v >> w;
         e[u].push_back(edg(i, v, w));
-        e[v].push_back(edg(i, u, w));
     }
-    dis[1] = 0;
-    q.push(inode(0, 1));
+    dis[s] = 0;
+    q.push(inode(0, s));
     while (!q.empty()) {
         inode tmp = q.top();
         q.pop();
-        if (tmp.dis > dis[tmp.v])
-            continue;
+        if (tmp.dis > dis[tmp.v]) continue;
         ff(i, 0, e[tmp.v].size()) {
             edg tmp2 = e[tmp.v][i];
             if (tmp2.w + tmp.dis < dis[tmp2.v]) {
@@ -63,8 +58,7 @@ signed main() {
         }
     }
     f(i, 1, n) {
-        if (pre[i])
-            cout << pre[i] << " ";
+        cout << dis[i] << " ";
     }
     return 0;
 }
