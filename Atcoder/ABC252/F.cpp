@@ -12,17 +12,19 @@ using namespace std;
 const int maxn = 5e5 + 10;
 const int maxb = 110;
 int T = 1, n, m, x, ans = 0, a[maxn], b[maxn];
-priority_queue<int>q;
+priority_queue<int, vector<int>, greater<int> >q;
 
 int solve() {
     ans = 0;
     cin >> n >> m;
-    ans = m;
     f(i, 1, n) {
         cin >> a[i];
+        a[0] += a[i];
         q.push(a[i]);
     }
-    while (q.size() > 2) {
+    if (m - a[0])
+        q.push(m - a[0]);
+    while (q.size() > 1) {
         int tmp = q.top();
         q.pop();
         int tmp2 = q.top();
