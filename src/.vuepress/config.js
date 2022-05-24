@@ -229,6 +229,11 @@ module.exports = {
             '/Note/': [{
                 title: '学习笔记',
                 collapsable: false,
+                children: [
+                    '',
+                    'Other/Quicksort',
+                    'Other/SortAlgorithm',
+                ]
             }]
         },
     },
