@@ -1,0 +1,3 @@
+[submodule "CFBooster"]
+	path = CFBooster
+	url = git@github.com:fjzzq2002/CFBooster.git
