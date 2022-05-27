@@ -16,6 +16,7 @@ int imx[105][105], dp[105][105];
 
 int solve() {
     ans = 0;
+    cin >> n >> m;
     for (int i = 1; i <= n; ++i)
         cin >> a[i];
     for (int i = 1; i <= n; ++i) {
@@ -41,7 +42,7 @@ int solve() {
 
 signed main() {
     FIO;
-    while (cin >> n >> m && (n || m)) {
+    while (T--) {
         // cout << "Case #" << T + 1 << ":" << endl;
         solve();
     }
