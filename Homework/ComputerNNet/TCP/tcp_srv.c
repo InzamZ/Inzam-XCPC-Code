@@ -91,7 +91,7 @@ void echo_rep(int sockfd) {
         // TODO 按题设要求打印接收到的[echo_rqt]信息；
         printf("[srv] receive data is %s\n", buf);
         // TODO 回写客户端[echo_rep]信息；根据读写边界定义，同样需先发长度，再发数据：res = write(x,x,x);res = write(x,x,x);
-        res = write(sockfd, &len_n, sizeof(int));
+        res = write(sockfd, &len_h, sizeof(int));
         res = write(sockfd, buf, len_h);
         // TODO 发送结束，释放buf；
         free(buf);
@@ -126,13 +126,13 @@ int main(int argc, char *argv[]) {
         printf("[srv] inet_pton error for %s\n", argv[1]);
         exit(1);
     }
-    printf("[srv] server[%s:%s] is initializing!\n", argv[1], argv[2]);
     srv_addr.sin_family = AF_INET;
-    srv_addr.sin_port = htons(atoi(argv[2]));
+    srv_addr.sin_port = atoi(argv[2]);
     // TODO 按题设要求打印服务器端地址server[ip:port]，推荐使用inet_ntop();
-    printf("[srv] server[%s:%s] is initializing!", argv[1], argv[2]);
+    printf("[srv] server[%s:%s] is initializing!\n", argv[1], argv[2]);
     // TODO 获取Socket监听描述符: listenfd = socket(x,x,x);
-    if ((listenfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+    listenfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (listenfd < 0) {
         printf("[srv] socket return %d and errno is %d\n", listenfd, errno);
         return -1;
     }
@@ -143,6 +143,7 @@ int main(int argc, char *argv[]) {
     // 开启accpet()主循环，直至sig_to_exit指示服务器退出；
     while (!sig_to_exit) {
         // TODO 获取cli_addr长度，执行accept()：connfd = accept(x,x,x);
+        cli_addr_len = sizeof(cli_addr);
         connfd = accept(listenfd, (struct sockaddr *)&cli_addr, &cli_addr_len);
         // 以下代码紧跟accept()，用于判断accpet()是否因SIG_INT信号退出（本案例中只关心SIGINT）；也可以不做此判断，直接执行 connfd<0 时continue，因为此时sig_to_exit已经指明需要退出accept()主循环，两种方式二选一即可。
         if (connfd == -1 && errno == EINTR && sig_type == SIGINT) { 

@@ -12,22 +12,22 @@
 #include <errno.h>
 
 #define MAX_CMD_STR 100
+char buf[MAX_CMD_STR + 1];
 
 // 业务逻辑处理函数
 int echo_rqt(int sockfd) {
-    char buf[MAX_CMD_STR + 1];
     // 从stdin读取1行
-    while (fgets(buf, MAX_CMD_STR, stdin)) {
+    char *res = fgets(buf, MAX_CMD_STR, stdin);
+    while (res != NULL) {
         // TODO 收到exit，退出循环返回
-        if (strncmp(buf, "exit", 4) == 0) {
+        if (strncmp(buf, "exit", 4) == 0)
             break;
-        }
         // TODO 查询所读取1行字符的长度，并将行末'\n'更换为'\0'
-        int len_h = strlen(buf),len_n = htonl(len_h);
-        if (buf[len_h - 1] == '\n') {
+        int len_h = strlen(buf), len_n;
+        if (buf[len_h - 1] == '\n')
             buf[len_h - 1] = '\0';
-        }
         // TODO 根据读写边界定义，先发数据长度，再发缓存数据
+        len_n = htonl(len_h);
         int n = write(sockfd, &len_n, sizeof(int));
         if (n < 0) {
             perror("write");
@@ -47,16 +47,15 @@ int echo_rqt(int sockfd) {
             perror("read");
             return -1;
         }
-        while (n < len_h) {
+        while (n < len_h)
             n += read(sockfd, rsp + n, len_h - n);
-        }
         rsp[len_h] = '\0';
         printf("[echo_rep] %s\n", rsp);
+        res = fgets(buf, MAX_CMD_STR, stdin);
         /* int型长度变量在读写时请特别注意字节序转换！强烈建议做如下定义，以示区分：*/
         // int len_h = 0; // 按主机字节序读写的长度变量；
         // int len_n = 0; // 按网络字节序读写的长度变量；
         /* 在通过read()读取数据时，有可能因为网络传输等问题，使得read()期望读取长度为LEN的数据，但是首次读取仅返回了长度为RES(RES < LEN)的数据（剩余数据尚未接收至系统内核缓存）。因此在read()后必须进行合理判断、循环读取，直至多次read()返回的RES累加和等于LEN，否则读取数据不完整。测试平台刻意制造了必须多次读取的场景，故要求客户端、服务器都必须执行*/
-
     }
     return 0;
 }
@@ -90,11 +89,11 @@ int main(int argc, char *argv[]) {
         perror("Connect failed");
         exit(1);
     }
-    if ((numbytes = recv(connfd, buf, MAX_CMD_STR, 0)) == -1) {
-        perror("recv failed");
-        exit(1);
-    }
-    buf[numbytes] = '\0';
+    // if ((numbytes = recv(connfd, buf, MAX_CMD_STR, 0)) == -1) {
+    //     perror("recv failed");
+    //     exit(1);
+    // }
+    // buf[numbytes] = '\0';
     if (res == 0) {
         // TODO 连接成功，按题设要求打印服务器端地址server[ip:port]
         printf("[cli] server[%s:%s] is connected!\n", argv[1], argv[2]);
