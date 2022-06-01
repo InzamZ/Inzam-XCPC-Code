@@ -69,12 +69,35 @@ int solve() {
     return 0;
 }
 
+void solve2() {
+    cin >> n;
+    aans.clear();
+    f(i, 1, n) cin >> a[i];
+    f(i, 1, n) cin >> b[i];
+    f(i, 1, n) f(j, i + 1, n) {
+        if (a[i] > a[j] || (a[i] == a[j] && b[i] > b[j])) {
+            swap(a[i], a[j]);
+            swap(b[i], b[j]);
+            aans.push_back(pii(i, j));
+        }
+    }
+    if (!is_sorted(b + 1, b + n + 1)) {
+        cout << "-1\n";
+    }
+    else {
+        cout << aans.size() << '\n';
+        for (auto &i : aans)
+            cout << i.first << ' ' << i.second << '\n';
+    }
+}
+
 signed main() {
     FIO;
     cin >> T;
     while (T--) {
         // cout << "Case #" << T + 1 << ":" << endl;
-        solve();
+        // solve();
+        solve2();
     }
     return 0;
 }
