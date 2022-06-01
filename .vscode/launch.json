@@ -1,14 +1,26 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "name": "Python: 当前文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "args": [
+                "-b",
+                "in.csv"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
         {
             "name": "(gdb) 启动",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}.out",
             "args": [
-                "-DONLINE_JUDGE"
+                "\"/home/inzamz/Code/acmcode/Homework/System/Exc6/src\"",
+                "\"/home/inzamz/Code/acmcode/Homework/System/Exc6/dest\""
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -22,13 +34,12 @@
                     "ignoreFailures": true
                 },
                 {
-                    "description":  "将反汇编风格设置为 Intel",
+                    "description": "将反汇编风格设置为 Intel",
                     "text": "-gdb-set disassembly-flavor intel",
                     "ignoreFailures": true
                 }
             ]
         },
-    
         {
             "name": "TCP srv",
             "type": "cppdbg",
@@ -50,7 +61,7 @@
                     "ignoreFailures": true
                 },
                 {
-                    "description":  "将反汇编风格设置为 Intel",
+                    "description": "将反汇编风格设置为 Intel",
                     "text": "-gdb-set disassembly-flavor intel",
                     "ignoreFailures": true
                 }
@@ -77,7 +88,7 @@
                     "ignoreFailures": true
                 },
                 {
-                    "description":  "将反汇编风格设置为 Intel",
+                    "description": "将反汇编风格设置为 Intel",
                     "text": "-gdb-set disassembly-flavor intel",
                     "ignoreFailures": true
                 }

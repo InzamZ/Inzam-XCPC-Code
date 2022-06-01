@@ -107,11 +107,13 @@ def parse(file):
     
 def build(file):
     flag = True
-    print(file+'.csv')
+    dir = file+'.csv'
     reslist = list()
     targetf = open (file+'.json',"w",newline='')
-    with open(file+'.csv',newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
+    with open(dir,"r",newline='') as csvfile:
+        FirstRow = list(("id","name","type","hardware_model","hardware_sn","software_version","software_last_update",
+                    "nic1_type","nic1_mac","nic1_ipv4","nic2_type","nic2_mac","nic2_ipv4","state"))
+        reader = csv.DictReader(csvfile,fieldnames=FirstRow,dialect='excel',delimiter=',',quotechar='"')
         for row in reader:
             resdict = dict()
             hardware = dict()
@@ -119,6 +121,8 @@ def build(file):
             network = list()
             interface1 = dict()
             interface2 = dict()
+            network.append(interface1)
+            network.append(interface2)
             networkflag = True
             for key in row:
                 if len(network)>0 and networkflag:
@@ -132,16 +136,12 @@ def build(file):
                     subkey = key.strip()[9:]
                     software[subkey.strip()] = row[key].strip()
                     resdict['software']=software
-                elif key.startswith('network1'):
-                    subkey = key.strip()[9:]
-                    if len(interface1) == 1:
-                        network.append(interface1)
+                elif key.startswith('nic1'):
+                    subkey = key.strip()[5:]
                     if row[key].strip() != "":
                         interface1[subkey.strip()] = row[key].strip()
-                elif key.startswith('network2'):    
-                    subkey = key.strip()[9:]
-                    if len(interface2) == 1:
-                        network.append(interface2)
+                elif key.startswith('nic2'):    
+                    subkey = key.strip()[5:]
                     if row[key].strip() != "":
                         interface2[subkey.strip()] = row[key].strip()
                 else:
@@ -156,8 +156,8 @@ def build(file):
 def main(sys_argv):
     opt = GetFileName(sys_argv)
     if opt[0] in ["-p","--parse"]:
-        parse(opt[1])
+        parse(opt[1][:-5])
     else :
-        build(opt[1])
+        build(opt[1][:-4])
     
 main(sys.argv[1:])
