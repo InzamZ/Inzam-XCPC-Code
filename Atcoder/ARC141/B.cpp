@@ -6,36 +6,48 @@ using namespace std;
 #define pii pair<int,int>
 #define f(i,a,b) for(int (i)=(a);(i)<=(b);(i)++)
 #define F(i,a,b) for(int (i)=(a);(i)>=(b);(i)--)
-const int maxn = 5e5 + 10;
+const int maxn = 100 + 10;
 const int maxb = 110;
-#define MOD (998244353ll)
-int T = 1, n, m, lgm, ans = 0, a[maxn], dp[maxn][100];
-int tmp;
+#define mod (998244353ll)
+int T = 1, n, m, lgm, ans = 0, dp[maxn][100];
+int tmp, bin[maxn];
 
 int solve() {
     lgm = ans = 0;
     cin >> n >> m;
     tmp = m;
+    bin[0] = 1;
+    for (int i = 1; i <= 61; ++i)
+        bin[i] = bin[i - 1] * 2;
     while (tmp) {
         lgm++;
         tmp /= 2;
     }
-    if (n > lgm)
+    if (n > lgm || n > 60)
         ans = 0;
+    // else if (n == 1)
+    //     ans = m;
     else {
-        for (int i = 1;i <= n;++i)
-        {
-            for (int j = 1;j <= lgm;++j)
-            {
-                for (int k = i; k + j <= m; ++k)
-                {
-
-                }
+        dp[1][0] = 0;
+        for (int i = 1; i <= lgm; ++i)
+            dp[1][i] = bin[i - 1] % mod;
+        dp[1][lgm] = (m - bin[lgm - 1] + 1) % mod;
+        for (int i = 2; i <= n; ++i) {
+            for (int j = i; j <= lgm; ++j) {
+                for (int k = i - 1; k <= j - 1; ++k)
+                    if (j != lgm)
+                        dp[i][j] = (dp[i][j] + dp[i - 1][k] * (bin[j - 1] % mod) % mod ) % mod;
+                    else
+                        dp[i][j] = (dp[i][j] + (dp[i - 1][k] * ((m - bin[j - 1] + 1 + mod) % mod) % mod)) % mod;
             }
         }
-        ans = dp[n][lgm];
+        for (int i = n; i <= lgm; ++i) {
+            ans += dp[n][i];
+            ans %= mod;
+        }
     }
-    cout << ans << '\n';
+    // cout << bin[61] << '\n';
+    cout << ans % mod << '\n';
     return 0;
 }
 void main() {
@@ -75,5 +87,9 @@ signed main() {
 10 123456789
 *o* Sample Output 3:
 205695670
+*o* Sample Input 4:
+1 167
+*o* Sample Output 4:
+167
 *o* This chunk of comment is used for auto-testing. Please don't modify.
 */

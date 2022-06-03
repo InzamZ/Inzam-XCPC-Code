@@ -13,22 +13,27 @@ vector<int>v;
 string s;
 
 int updAns(int x, int times, int based) {
-    int tmp = 1;
+    int tmp = 0;
     f(i, 1, times) {
         if (i != 1)
             tmp *= based;
         tmp += x;
     }
-    ans = max(ans, tmp);
+    if (tmp <= n)
+        ans = max(ans, tmp);
     return 0;
 }
 
 int solve() {
     cin >> n;
-    ans = n;
+    ans = 1;
     s = to_string(n);
     siz = s.size();
-    F(i, siz, 1) {
+    f(i, 1, siz - 1) {
+        ans *= 10;
+    }
+    ans--;
+    F(i, siz - 1, 1) {
         if (siz % i == 0) {
             int times = siz / i;
             int based = 1;
@@ -36,11 +41,13 @@ int solve() {
                 based *= 10;
             }
             int tmp = n;
-            while (tmp) {
-                int x = tmp % based;
-                updAns(x, times, based);
+            while (tmp / based)
                 tmp /= based;
-            }
+            updAns(tmp, times, based);
+            string tmpS = to_string(tmp);
+            string tmpS2 = to_string(tmp - 1);
+            updAns(tmp - 1, times, based);
+            updAns(tmp - 1, times, based);
         }
     }
     cout << ans << '\n';
@@ -72,13 +79,26 @@ signed main() {
 #endif
 /*
 *o* Sample Input 1:
-3
+4
 1412
 23
 498650499498649123
+100000
 *o* Sample Output 1:
 1313
 22
 498650498650498650
+99999
+*o* Sample Input 2:
+4
+1009
+100199
+100099
+10101
+*o* Sample Output 2:
+999
+100100
+99999
+9999
 *o* This chunk of comment is used for auto-testing. Please don't modify.
 */
