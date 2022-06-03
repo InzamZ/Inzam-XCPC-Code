@@ -19,8 +19,7 @@
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}.out",
             "args": [
-                "\"/home/inzamz/Code/acmcode/Homework/System/Exc6/src\"",
-                "\"/home/inzamz/Code/acmcode/Homework/System/Exc6/dest\""
+                "-DONLINE_JUDGE"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
