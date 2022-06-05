@@ -18,13 +18,13 @@ int solve() {
     v.clear();
     b[0] = 0;
     cin >> n;
-    if (T==1 && n == 199997)
-        cout << "Case #1: 0\n";
     f(i, 1, n) {
         cin >> a[i];
         b[i] = b[i - 1] + a[i];
         if (a[i] > 0)
             v.push_back(i);
+        // if (n == 199997 && i >= 149990)
+        //     cout << i << ' ' <<  a[i] << "\n";
     }
     if (ans != -1)
         for (int i = 1; i < v.size(); i++) {
@@ -33,23 +33,33 @@ int solve() {
                 break;
             }
             if (i == 1) {
-                lmx = a[v[i - 1]];
+                lmx = v[i - 1];
                 lft = a[v[i - 1]] + b[v[i] - 1] - b[v[i - 1]];
                 lft = max(lft, 0ll);
             }
             else {
-                int tmp = min(a[v[i - 1]], a[v[i]]) + b[v[i] - 1] - b[v[i - 1]];
-                if (a[v[i - 1]] >= lmx) {
+                if (a[v[i - 1]] > a[lmx]) {
                     if (lft > 0) {
                         ans = -1;
                         break;
                     }
-                    lmx = a[v[i - 1]];
+                    for (lmx ;lmx <= i-1 && a[lmx] > a[v[i - 1]]; lmx++)
+                    {
+                        if (-b[lmx] + b[v[i - 1]] > 0ll) {
+                            ans = -1;
+                            break;
+                        }
+                    }
                     lft = max(lft, 0ll);
                     lft += b[v[i] - 1] - b[v[i - 1]] + a[v[i - 1]];
                 }
-                else{
-                    lft += b[v[i] - 1] - b[v[i - 1]] + a[v[i - 1]];
+                else {
+                    lft +=  a[v[i - 1]];
+                    if (lft > lmx) {
+                        ans = -1;
+                        break;
+                    }
+                    lft += b[v[i] - 1] - b[v[i - 1]];
                 }
                 if (a[v[i]] >= lmx && lft > 0) {
                     ans = -1;
@@ -101,15 +111,18 @@ YES
 YES
 NO
 *o* Sample Input 2:
-3
+4
 6
 -4 4 -3 3 -3 3
 5
 4 -3 3 -3 5
 11
-1 -2 1 -2 1 -2 1 -2 1 -2 100
+5 -1 2 -2 3 -3 4 -2 1 -2 1
+20
+-680896910 862281557 -803798947 -5665992 637332593 -334972380 264567669 -291145921 475603275 -324548977 -921880954 -589678065 -160354019 436371070 -745445581 820916182 -327279238 -112430752 397311313 -137310267
 *o* Sample Output 2:
 YES
+NO
 NO
 NO
 *o* This chunk of comment is used for auto-testing. Please don't modify.
