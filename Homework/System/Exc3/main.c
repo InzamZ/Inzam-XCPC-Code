@@ -30,9 +30,7 @@ int main() {
             write(fd[1], str2, sizeof(str2));
             exit(0);
         }
-        else{
-
-            
+        else {
             sleep(1);
             printf("This is parent [pid]%d\n", getpid());
             close(fd[1]);
