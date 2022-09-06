@@ -104,6 +104,7 @@ module.exports = {
                         '/Atcoder/ABC250',
                         '/Atcoder/ARC106',
                         '/Atcoder/ARC116',
+                        '/Atcoder/ARC147',
                         '/Atcoder/EducationDPContest',
                         '/Atcoder/keyence2021',
                     ]
@@ -172,6 +173,7 @@ module.exports = {
                     'ABC250',
                     'ARC106',
                     'ARC116',
+                    'ARC147',
                     'EducationDPContest',
                     'keyence2021',
                 ]
