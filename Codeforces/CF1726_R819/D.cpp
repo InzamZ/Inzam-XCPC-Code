@@ -8,7 +8,7 @@ using namespace std;
 #define F(i,a,b) for(int (i)=(a);(i)>=(b);(i)--)
 const int maxn = 1e6 + 10;
 const int maxb = 110;
-int T = 1, n, m, k, ans = 0, u, v, deg[maxn], fa[maxn], pic[maxn];
+int T = 1, n, m, k, ans = 0, u[maxn], v[maxn], par[maxn], vis[maxn], pic[maxn], paredg[maxn];
 
 struct edg {
     int v, id;
@@ -16,44 +16,75 @@ struct edg {
 
 vector<edg>e[maxn];
 
-int ifind(int x) {
-    if (fa[x] == x)
-        return fa[x];
-    fa[x] = ifind(fa[x]);
-    return fa[x];
-}
+// int ifind(int x) {
+//     if (fa[x] == x)
+//         return fa[x];
+//     fa[x] = ifind(fa[x]);
+//     return fa[x];
+// }
 
-void merge(int x, int y) {
-    int fx = ifind(x), fy = ifind(y);
-    if (fx != fy)
-        fa[fy] = fx;
+// void merge(int x, int y) {
+//     int fx = ifind(x), fy = ifind(y);
+//     if (fx != fy)
+//         fa[fy] = fx;
+// }
+
+int dfsno = 0;
+int dfs(int rt) {
+    vis[rt] = vis[par[rt]] + 1;
+    for (auto x : e[rt]) {
+        if (!vis[x.v]) {
+            par[x.v] = rt;
+            pic[x.id] = 1;
+            dfs(x.v);
+        }
+    }
+    return 0;
 }
 
 int solve() {
-    ans = 0;
+    dfsno = ans = 0;
     cin >> n >> m;
     for (int i = 1; i <= n; ++i) {
-        deg[i] = 0;
-        fa[i] = i;
+        par[i] = paredg[i] = vis[i] = 0;
         e[i].clear();
     }
     for (int i = 1; i <= m; ++i) {
         pic[i] = 0;
-        cin >> u >> v;
-        ++deg[u]; ++deg[v];
-        e[u].push_back({v, i});
-        e[v].push_back({u, i});
+        cin >> u[i] >> v[i];
+        e[u[i]].push_back({v[i], i});
+        e[v[i]].push_back({u[i], i});
     }
-    ans = m - 2;
-    for (int i = 1; i <= n; ++i) {
-        for (auto x : e[i]) {
-            if (ans && deg[i] > 1 && deg[x.v] > 1 && !pic[x.id] && ifind(i) != ifind(x.v)) {
-                --deg[i]; --deg[x.v];
-                pic[x.id] = 1;
-                --ans;
-                merge(i, x.v);
+    par[1] = 0;
+    dfs(1);
+    map<int, int>cnt;
+    int mn = 2 * n + 5, mx = 0;
+    for (int i = 1; i <= m ; ++i) {
+        if (pic[i] == 0) {
+            cnt[u[i]]++; cnt[v[i]]++;
+        }
+    }
+    vector<pii>res;
+    for (auto x : cnt) {
+        mn = min(mn, x.second);
+        mx = max(mx, x.second);
+        res.push_back({vis[x.first], x.first});
+    }
+    if (cnt.size() == 3 && mn == mx && mn == 2) {
+        sort(res.rbegin(), res.rend());
+        int curt = res[0].second;
+        int i, j;
+        for (auto x : e[curt]) {
+            if (pic[x.id] == 0) {
+                i = x.id;
+            }
+            if (x.v == par[curt])
+            {
+                j = x.id;
             }
         }
+        pic[i] = 1;
+        pic[j] = 0;
     }
     for (int i = 1; i <= m ; ++i)
         cout << pic[i];
