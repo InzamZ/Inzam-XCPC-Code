@@ -13,23 +13,7 @@ int T = 1, n, m, k, ans = 0, u[maxn], v[maxn], par[maxn], vis[maxn], pic[maxn], 
 struct edg {
     int v, id;
 };
-
 vector<edg>e[maxn];
-
-// int ifind(int x) {
-//     if (fa[x] == x)
-//         return fa[x];
-//     fa[x] = ifind(fa[x]);
-//     return fa[x];
-// }
-
-// void merge(int x, int y) {
-//     int fx = ifind(x), fy = ifind(y);
-//     if (fx != fy)
-//         fa[fy] = fx;
-// }
-
-int dfsno = 0;
 int dfs(int rt) {
     vis[rt] = vis[par[rt]] + 1;
     for (auto x : e[rt]) {
@@ -43,7 +27,7 @@ int dfs(int rt) {
 }
 
 int solve() {
-    dfsno = ans = 0;
+    ans = 0;
     cin >> n >> m;
     for (int i = 1; i <= n; ++i) {
         par[i] = paredg[i] = vis[i] = 0;
