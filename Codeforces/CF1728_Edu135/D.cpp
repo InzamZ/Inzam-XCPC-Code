@@ -11,6 +11,10 @@ const int maxb = 110;
 int T = 1, n, m, k, ans = 0, a[maxn], b[maxn];
 string s;
 
+bool cmpchar(const char &x, const char &y) {
+    return x == y ? 0 : x > y ? -1 : 1;
+}
+
 int solve() {
     ans = 0;
     cin >> s;
@@ -18,21 +22,20 @@ int solve() {
     vector<vector<int>> dp(n + 1, vector<int>(n + 1));
     for (int len = 2; len <= n; len += 2) {
         for (int l = 0; l + len <= n; ++l) {
-            int r = len + l + 1;
-            dp[l][r] = 1;
-            int res = -1;
-            if (dp[l][r - 2] == 0 )
-                res = max(res, (s[r - 2] == s[r - 1]) ? 0ll : 1ll);
-            else
-                res = max(res, dp[l][r - 2]);
-            if (dp[l + 1][r - 1] != 0)
-                res = max(res, (s[r - 2] == s[l]) ? 0ll : 1ll);
-            else
-                res = max(res, dp[l + 1][r - 1]);
-            dp[l][r] = min(dp[l][r], res);
+            int r = len + l;
+            int v1 = dp[l + 1][r - 1] == 0 ? cmpchar(s[l], s[r - 1]) : dp[l + 1][r - 1];
+            int v2 = dp[l + 2][r] == 0 ? cmpchar(s[l], s[l + 1]) : dp[l + 2][r];
+            int v3 = dp[l + 1][r - 1] == 0 ? cmpchar(s[r - 1], s[l]) : dp[l + 1][r - 1];
+            int v4 = dp[l][r - 2] == 0 ? cmpchar(s[r - 1], s[r - 2]) : dp[l][r - 2];
+            dp[l][r] = max(min(v1, v2), min(v3, v4));
         }
     }
-    cout << 
+    if (dp[0][n] == 1)
+        cout << "Alice\n";
+    else if (dp[0][n] == 0)
+        cout << "Draw\n";
+    else
+        cout << "Bob\n";
     return 0;
 }
 void main() {
@@ -67,5 +70,10 @@ abba
 *o* Sample Output 1:
 Alice
 Draw
+*o* Sample Input 2:
+1
+aaaabccbdd
+*o* Sample Output 2:
+Alice
 *o* This chunk of comment is used for auto-testing. Please don't modify.
 */
