@@ -128,6 +128,7 @@ module.exports = {
                         '/Codeforces/CF1671_Edu127',
                         '/Codeforces/CF1675_R787',
                         '/Codeforces/CF1726_R819',
+                        '/Codeforces/CF1728_Edu135',
                     ]
                 },
                 {
@@ -198,6 +199,7 @@ module.exports = {
                     'CF1671_Edu127',
                     'CF1675_R787',
                     'CF1726_R819',
+                    'CF1728_Edu135',
                 ]
             }],
             '/CodeChef/': [{
