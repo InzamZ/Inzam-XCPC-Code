@@ -10,58 +10,22 @@ const int maxn = 5e5 + 10;
 const int maxb = 110;
 int T = 1, n, m;
 pii a[maxn];
-long double k, ans = 0, res;
 vector<int>v;
-string s;
-vector<int>pre(maxn);
-vector<int>des(maxn);
 
 int solve() {
-    ans = 1e30;
-    k = 0;
+    v.clear();
     cin >> n;
     f(i, 1, n)  cin >> a[i].first;
     f(i, 1, n)  cin >> a[i].second;
-    sort(a + 1, a + 1 + n);
-    a[0] = a[1];
-    a[n + 1] = a[n];
-    pre[0] = des[n + 1] = 0;
     f(i, 1, n) {
-        pre[i] = max(pre[i - 1] + a[i].first - a[i - 1].first, a[i].second);
+        v.push_back(a[i].first - a[i].second);
+        v.push_back(a[i].first + a[i].second);
     }
-    F(i, n, 1) {
-        des[i] = max(des[i + 1] + a[i + 1].first - a[i].first, a[i].second);
-    }
-    f(i, 1, n - 1) {
-        int l = a[i].first, r = a[i + 1].first;
-        if (pre[i] < des[i + 1]) {
-            l += (des[i + 1] - pre[i]);
-            res = max(0.0L, (r - l) * 0.5L) + max(pre[i], des[i + 1]);
-            if (ans > res) {
-                ans = res;
-                if (l > r)
-                    k = r;
-                else
-                    k = 0.5L * (l + r);
-            }
-        }
-        else {
-            r += (des[i + 1] - pre[i]);
-            if (r - l < 0)
-                continue;
-            res = max(0.0L, (r - l) * 0.5L) + max(pre[i], des[i + 1]);
-            if (ans > res) {
-                ans = res;
-                if (l > r)
-                    k = l;
-                else
-                    k = 0.5L * (l + r);
-            }
-        }
-    }
-    if (n == 1)
-        k = a[1].first;
-    printf("%.10Lf\n", k);
+    sort(v.begin(), v.end());
+    if ((v[0] + v[v.size() - 1]) % 2 == 1)
+        printf ("%d.5\n", (v[0] + v[v.size() - 1]) / 2);
+    else
+        printf ("%d\n", (v[0] + v[v.size() - 1]) / 2);
     return 0;
 }
 void main() {
