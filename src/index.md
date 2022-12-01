@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://file.inzamz.top/vuepress/ICPC.png
+heroImage: ./ICPC.png
 tagline: xcpc solution
 actionText: Go!
 actionLink: /guide/
