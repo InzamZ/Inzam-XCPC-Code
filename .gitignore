@@ -7,4 +7,7 @@
 **/out.txt
 bin/
 
+# cmake
+cmake-build-debug
+
 .VSCodeCounter
