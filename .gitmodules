@@ -1,5 +1,5 @@
 [submodule "CCBootser"]
-	path = CCBootser
+	path = Exlib/CCBootser
 	url = git@github.com:InzamZ/CFBooster.git
 [submodule "Exlib/ac-library"]
 	path = Exlib/ac-library
