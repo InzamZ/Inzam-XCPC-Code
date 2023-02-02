@@ -1,0 +1,13 @@
+{
+    "cmake.configureOnOpen": false,
+    "files.associations": {
+        "*.ttss": "css",
+        "*.wxss": "css",
+        "*.sjs": "javascript",
+        "*.ttml": "ttml",
+        "*.wxml": "ttml",
+        "*.sk": "ttml",
+        "all": "cpp",
+        "iostream": "cpp"
+    }
+}

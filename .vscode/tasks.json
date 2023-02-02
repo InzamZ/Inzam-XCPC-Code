@@ -11,7 +11,8 @@
                 "${file}",
                 "-fdiagnostics-color=always",
                 "-g",
-                "-I ${workspaceFolder}/Exlib/bits/stdc++.h",
+                "-I${workspaceFolder}/Exlib",
+                "-I${workspaceFolder}/Exlib/aclib",
                 "--std=c++17",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.out"

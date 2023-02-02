@@ -2,7 +2,6 @@
 *.in
 *.exe
 *.zip
-*.json
 *.drawio
 **/out.txt
 bin/
@@ -11,3 +10,7 @@ bin/
 cmake-build-debug
 
 .VSCodeCounter
+
+# MacOS
+
+**.dSYM
