@@ -12,7 +12,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "-I${workspaceFolder}/Exlib",
-                "-I${workspaceFolder}/Exlib/aclib",
+                "-I${workspaceFolder}/Exlib/ac-library",
                 "--std=c++17",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.out"
