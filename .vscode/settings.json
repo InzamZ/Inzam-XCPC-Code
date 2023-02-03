@@ -25,7 +25,7 @@
         "cpp": "g++ $dir$fileName -g -I$workspaceRoot/Exlib/ac-library -I$workspaceRoot/Exlib -std=c++20 -o $dir$fileNameWithoutExt.out && $dir$fileNameWithoutExt.out",
         "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "php": "php",
-        "python": "python -u",
+        "python": "python3 -u",
         "perl": "perl",
         "perl6": "perl6",
         "ruby": "ruby",
