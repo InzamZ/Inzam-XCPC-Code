@@ -13,6 +13,7 @@
                 "-g",
                 "-I${workspaceFolder}/Exlib",
                 "-I${workspaceFolder}/Exlib/ac-library",
+                "-DLOCALLC",
                 "--std=c++17",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.out"
