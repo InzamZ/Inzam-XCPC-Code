@@ -8,7 +8,9 @@
         "*.wxml": "ttml",
         "*.sk": "ttml",
         "all": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "queue": "cpp",
+        "vector": "cpp"
     },
     "code-runner.clearPreviousOutput": true,
     "code-runner.defaultLanguage": "cpp",
