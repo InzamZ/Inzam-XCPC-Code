@@ -24,7 +24,6 @@ class Solution {
         return ans;
     }
 };
-
 #ifdef LOCALLC
 int main() {
     Solution sol;
