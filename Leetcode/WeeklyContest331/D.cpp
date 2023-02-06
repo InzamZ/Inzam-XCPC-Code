@@ -69,7 +69,6 @@ class Solution {
 };
 
 #ifdef LOCALLC
-
 int main() {
     Solution sol;
     // [4,2,2,2]
@@ -79,5 +78,4 @@ int main() {
     cout << sol.minCost(v1, v2) << endl;
     return 0;
 }
-
 #endif

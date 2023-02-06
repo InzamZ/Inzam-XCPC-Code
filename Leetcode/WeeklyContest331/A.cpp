@@ -12,7 +12,7 @@ class Solution {
             q.push(x);
             ans += x;
         }
-        for (int i = 1; i<= k; ++i) {
+        for (int i = 1; i <= k; ++i) {
             int cnt = q.top();
             cnt = cnt - floor(sqrt(cnt));
             ans -= cnt;
@@ -26,10 +26,8 @@ class Solution {
 };
 
 #ifdef LOCALLC
-
 int main() {
     Solution sol;
     return 0;
 }
-
 #endif

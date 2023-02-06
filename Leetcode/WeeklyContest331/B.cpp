@@ -41,7 +41,7 @@ class Solution {
 
 int main() {
     Solution sol;
-    vector<string> words ({"aba","bcb","ece","aa","e"});
+    vector<string> words ({"aba", "bcb", "ece", "aa", "e"});
     vector<vector<int>> queries ({{0, 2}, {1, 4}, {1, 1}});
     sol.vowelStrings(words, queries);
     return 0;

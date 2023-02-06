@@ -31,10 +31,8 @@ class Solution {
 };
 
 #ifdef LOCALLC
-
 int main() {
     Solution sol;
     return 0;
 }
-
 #endif
