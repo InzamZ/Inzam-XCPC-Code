@@ -10,7 +10,7 @@ const int maxn = 5e5 + 10;
 const int maxb = 110;
 int T = 1, n, m, k, a[maxn], b[30];
 vector<int>v;
-string s,ans;
+string s, ans;
 
 int solve() {
     cin >> s;
@@ -22,23 +22,21 @@ int solve() {
         b[i - 'a' + 1]++;
     }
     ans = s;
-    int l = 0, r =s.length() - 1;
+    int l = 0, r = s.length() - 1;
     int cur = 1;
     // ab version
     while (l <= r) {
         while (b[cur] == 0)
             cur++;
-        while (b[cur] >= 2)
-        {
+        while (b[cur] >= 2) {
             ans[l] = ans[r] = cur + 'a' - 1;
             b[cur] -= 2;
             l++, r--;
             if (b[cur] == 0)
                 --b[0];
         }
-        if (b[cur] == 1)
-        {
-            if (l == r){
+        if (b[cur] == 1) {
+            if (l == r) {
                 ans[l] = cur + 'a' - 1;
                 b[cur]--;
                 break;
@@ -47,10 +45,8 @@ int solve() {
                 int ncur = cur + 1;
                 while (b[0] > 1 && b[ncur] == 0)
                     ncur++;
-                if (b[0] == 2 && b[ncur] >= 2 && b[ncur]%2 == 0)
-                {
-                    while (b[ncur] >= 2)
-                    {
+                if (b[0] == 2 && b[ncur] >= 2 && b[ncur] % 2 == 0) {
+                    while (b[ncur] >= 2) {
                         ans[l] = ans[r] = ncur + 'a' - 1;
                         b[ncur] -= 2;
                         l++, r--;
@@ -59,10 +55,8 @@ int solve() {
                     b[cur]--;
                     break;
                 }
-                else if (b[0] == 2 && b[ncur] >= 2 )
-                {
-                    while (b[ncur] >= 2)
-                    {
+                else if (b[0] == 2 && b[ncur] >= 2 ) {
+                    while (b[ncur] >= 2) {
                         ans[l] = ans[r] = ncur + 'a' - 1;
                         b[ncur] -= 2;
                         l++, r--;
@@ -73,8 +67,7 @@ int solve() {
                 }
                 ans[r] = cur + 'a' - 1;
                 b[cur]--;
-                for (int i = l; i < r; ++i)
-                {
+                for (int i = l; i < r; ++i) {
                     while (b[cur] == 0)
                         cur++;
                     ans[i] = cur + 'a' - 1;
