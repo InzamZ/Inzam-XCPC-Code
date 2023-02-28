@@ -13,7 +13,6 @@ int T = 1, n, m, k, ans = 0, cnt1 = 0 ;
 pii a[maxn];
 vector<pii>v;
 string s;
-
 int solve() {
     ans = cnt1 = 0;
     v.clear();
