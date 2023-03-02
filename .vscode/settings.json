@@ -10,7 +10,9 @@
         "all": "cpp",
         "iostream": "cpp",
         "queue": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "random": "cpp",
+        "string": "cpp"
     },
     "code-runner.clearPreviousOutput": true,
     "code-runner.defaultLanguage": "cpp",
